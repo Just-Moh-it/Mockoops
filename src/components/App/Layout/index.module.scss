@@ -1,0 +1,9 @@
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+
+  background-color: var(--primary);
+  height: 100%;
+  min-height: 100vh;
+}

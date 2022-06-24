@@ -1,0 +1,208 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  padding: 0 18px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    width: max-content;
+    margin: 0 auto;
+    margin-bottom: 10px;
+
+    border-width: 0 1.5px 1.5px 1.5px;
+    border-style: solid;
+    border-color: var(--primary-light);
+    border-radius: 0px 0px 20px 20px;
+    padding: 11px 22px;
+
+    .info {
+      position: relative;
+      .button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .panel {
+        position: absolute;
+        top: 30px;
+        left: 0;
+        border: 1.5px solid var(--primary-light);
+        padding: 20px;
+        z-index: 10000;
+        background-color: var(--primary);
+        border-radius: 10px;
+
+        input {
+          min-width: 200px;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: -10px;
+          left: 5px;
+
+          // Triange shape
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-bottom: 10px solid var(--primary-light);
+        }
+      }
+    }
+  }
+
+  .content {
+    width: 100%;
+
+    .videoPlayer {
+      width: 100%;
+      // background: linear-gradient(135deg, #46a6ff 0%, #55fff5 100%);
+      border-radius: 5px;
+      position: relative;
+      padding: 0px;
+      margin: 0px;
+      display: flex;
+      aspect-ratio: 16/9;
+      min-width: 400px;
+      color: red;
+    }
+
+    .controller {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0px;
+      gap: 22px;
+      margin-top: 10px;
+
+      .playback {
+        display: flex;
+        flex-direction: row;
+        align-items: space-between;
+        gap: 16px;
+      }
+
+      .playback,
+      .time {
+        flex-shrink: 0;
+      }
+
+      .progress {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        border-radius: 100px;
+        background-color: var(--primary-light);
+        height: 4px;
+        width: 100%;
+      }
+
+      .progressContainer {
+        width: 100%;
+
+        .progress {
+          // -webkit-appearance: none;
+          width: 100%;
+          height: 4px;
+
+          background-color: var(--primary-light);
+          outline: none;
+          transition: opacity 0.3s ease-out;
+        }
+
+        .progress:hover {
+          opacity: 1;
+        }
+
+        .progress::-webkit-slider-thumb {
+          appearance: none;
+          width: 12px;
+          height: 12px;
+          background: var(--secondary);
+          cursor: pointer;
+          border-radius: 50%;
+        }
+
+        .progress::-moz-range-thumb {
+          width: 12px;
+          height: 12px;
+          background: var(--secondary);
+          cursor: pointer;
+        }
+      }
+
+      .time {
+        min-width: 110px;
+        flex-shrink: 0;
+        text-align: right;
+
+        .duration {
+          color: var(--primary-lightest);
+        }
+      }
+    }
+  }
+
+  .footer {
+    width: 100%;
+
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    color: var(--primary-light);
+
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: var(--primary-lightest);
+    }
+
+    .wave {
+      animation-name: wave-animation; /* Refers to the name of your @keyframes element below */
+      animation-duration: 2.5s; /* Change to speed up or slow down */
+      animation-iteration-count: infinite; /* Never stop waving :) */
+      transform-origin: 70% 70%; /* Pivot around the bottom-left palm */
+      display: inline-block;
+    }
+
+    @keyframes wave-animation {
+      0% {
+        transform: rotate(0deg);
+      }
+      10% {
+        transform: rotate(14deg);
+      } /* The following five values can be played with to make the waving more or less extreme */
+      20% {
+        transform: rotate(-8deg);
+      }
+      30% {
+        transform: rotate(14deg);
+      }
+      40% {
+        transform: rotate(-4deg);
+      }
+      50% {
+        transform: rotate(10deg);
+      }
+      60% {
+        transform: rotate(0deg);
+      } /* Reset for the last half to pause */
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+  }
+}

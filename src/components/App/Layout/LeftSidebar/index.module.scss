@@ -1,0 +1,128 @@
+.wrapper {
+  min-width: 330px;
+  flex: 1;
+  border-right: 1.5px solid var(--primary-light);
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px;
+    gap: 20px;
+    border-bottom: 1.5px solid var(--primary-light);
+
+    .menu,
+    .theme {
+      flex-shrink: 0;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo {
+      width: 100%;
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .content {
+    padding: 20px;
+
+    .templates {
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        .heading {
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 27px;
+
+          color: --var(bg);
+        }
+      }
+      .list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        grid-gap: 20px;
+
+        .item {
+          /* IMAGE STYLES */
+          text-align: center;
+          cursor: pointer;
+
+          input {
+            display: none;
+          }
+
+          /* CHECKED STYLES */
+          input[type="radio"]:checked + .thumbnail {
+            outline: 3px solid var(--secondary);
+
+            &::after {
+              content: "";
+              position: absolute;
+              bottom: 7px;
+              left: 7px;
+              width: 18px;
+              height: 18px;
+              background-color: var(--secondary);
+              border-radius: 50%;
+              color: white;
+              box-sizing: border-box;
+              padding: 5px;
+
+              // Background image
+              background-image: url("data:image/svg+xml,%3Csvg width='9' height='9' viewBox='0 0 9 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7.5 2.25L3.375 6.375L1.5 4.5' stroke='white' stroke-width='1.38462' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+              background-repeat: no-repeat;
+              background-position: center;
+              background-size: 10px 10px;
+            }
+          }
+
+          .thumbnail {
+            position: relative;
+            width: 138px;
+            height: 77px;
+            background: linear-gradient(
+                119.45deg,
+                #75ffee 0%,
+                #a771ff 31.25%,
+                #fc5cff 57.81%,
+                rgba(255, 71, 71, 0) 100%
+              ),
+              #ffffff;
+            border-radius: 10px;
+          }
+
+          .title {
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 22px;
+            color: var(--bg);
+            margin: 0;
+            margin-top: 4px;
+            margin-bottom: -2px;
+            padding: 0;
+          }
+
+          .duration {
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 20px;
+            margin: 0;
+            padding: 0;
+
+            color: var(--primary-lightest);
+          }
+        }
+      }
+    }
+  }
+}

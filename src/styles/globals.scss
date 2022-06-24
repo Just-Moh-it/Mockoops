@@ -1,0 +1,164 @@
+// ----- Assets -----
+// Fonts - Inter & Poppins
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap");
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", "Inter", -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+  transition: background-color 0.3s;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  outline: none;
+  font: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    filter: brightness(120%);
+  }
+}
+
+ul,
+li {
+  list-style-type: none;
+}
+
+fieldset {
+  border: none;
+}
+
+.shortcut {
+  display: flex;
+  align-items: space-between;
+  gap: 1px;
+
+  kbd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 5px;
+    gap: 10px;
+
+    background: rgba(40, 38, 48, 0.4);
+    border-radius: 5px;
+
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 20px;
+    letter-spacing: -0.04em;
+  }
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+hr {
+  border: none;
+  border-top: 1.5px solid var(--primary-light);
+  margin: 18px 0;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 18px 0;
+  width: 100%;
+
+  .form-item {
+    width: 100%;
+
+    label {
+      font-family: "Poppins";
+      display: block;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      color: var(--bg);
+
+      &.file {
+        background: var(--primary-light);
+        border: 1.5px dashed rgba(146, 145, 152, 0.5);
+        border-radius: 10px;
+        padding: 17px 0;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 12px;
+
+        &.active {
+          filter: brightness(130%);
+          border-color: var(--secondary);
+        }
+
+        .title {
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 24px;
+
+          color: var(--bg);
+        }
+
+        .subtitle {
+          font-weight: 500;
+          font-size: 13px;
+          line-height: 16px;
+          text-align: center;
+
+          color: var(--primary-lightest);
+        }
+      }
+    }
+
+    input[type="text"] {
+      padding: 10px 16px;
+      width: 100%;
+      border: none;
+
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+
+      background: var(--primary-light);
+      color: var(--bg);
+      margin: 8px 0;
+      border-radius: 10px;
+
+      &::placeholder {
+        color: var(--primary-lightest);
+      }
+
+      &::focused {
+        outline: 1px solid var(--secondary);
+      }
+    }
+  }
+}

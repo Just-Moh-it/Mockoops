@@ -1,0 +1,37 @@
+{
+  "name": "github-wrapped",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@remotion/bundler": "3.0.0-lambda.196+d4d99a5b8",
+    "@remotion/cli": "3.0.0-lambda.196+d4d99a5b8",
+    "@remotion/lambda": "3.0.0-lambda.196+d4d99a5b8",
+    "@remotion/renderer": "3.0.0-lambda.196+d4d99a5b8",
+    "@remotion/player": "3.0.0-lambda.196+d4d99a5b8",
+    "next": "12.0.7",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "remotion": "3.0.0-lambda.196+d4d99a5b8",
+    "@headlessui/react": "^1.6.4",
+    "@shopify/react-shortcuts": "^5.0.1",
+    "framer-motion": "^6.3.11",
+    "lodash.chunk": "^4.2.0",
+    "make-color-more-chill": "^0.2.2",
+    "next-themes": "^0.2.0",
+    "polished": "^4.2.2",
+    "react-dropzone": "^14.2.1",
+    "sass": "^1.52.3",
+    "simplex-noise": "3.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.37",
+    "eslint": "8.4.1",
+    "eslint-config-next": "12.0.7",
+    "typescript": "^4.5.2"
+  }
+}

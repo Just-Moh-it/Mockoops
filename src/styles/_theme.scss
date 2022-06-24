@@ -1,0 +1,39 @@
+// body {
+$themes: (
+  "light": (
+    // All 3 changed
+    "primary": "#FFFFFF",
+    "primary-light": "#F6F6F6",
+    "primary-lightest": "#929198",
+
+    // Remain the same accross the temes
+    "secondary": "#0069FE",
+    "accent-0": "#0A2143",
+    "accent-1": "#EA4256",
+    "accent-2": "#61D3DE",
+
+    // This changed as well
+    "bg": "#060606",
+  ),
+  "dark": (
+    "primary": "#1C1A24",
+    "primary-light": "#282630",
+    "primary-lightest": "#929198",
+
+    "secondary": "#0069FE",
+    "accent-0": "#0A2143",
+    "accent-1": "#EA4256",
+    "accent-2": "#61D3DE",
+
+    "bg": "#FFFFFF",
+  ),
+);
+
+@each $theme-name, $properties in $themes {
+  html.#{$theme-name} {
+    // define a css variable for each property
+    @each $name, $property in $properties {
+      --#{$name}: #{$property};
+    }
+  }
+}
