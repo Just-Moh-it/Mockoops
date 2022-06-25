@@ -1,19 +1,20 @@
-import { useState, useEffect, useRef } from "react";
-import { Info, Play, Pause, Forward, Backward } from "../../../../icons";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { Info } from "icons";
 import styles from "./index.module.scss";
 import Link from "next/link";
 import { Popover } from "@headlessui/react";
 import { Player } from "@remotion/player";
-import { Stars } from "../../../../../remotion/Stars";
-// import { HelloWorld } from "../../../../../remotion/HelloWorld";
+import Stars from "remotion/stars/Stars";
+import { useRecoilValue } from "recoil";
+import { templateState, inputPropsState } from "state/global";
+
+import { secondsToTime } from "utils";
 
 const Center = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [playerProgressSeconds, setPlayerProgressSeconds] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const player = useRef(null);
-
-  const durationSeconds = 120;
+  const selectedTemplate = useRecoilValue(templateState);
+  const inputProps = useRecoilValue(inputPropsState);
 
   useEffect(() => {
     console.log(playerProgressSeconds);
@@ -26,7 +27,7 @@ const Center = () => {
       {/* Top  */}
       <div className={styles.top}>
         {/* Heading */}
-        <span>Gradient Template</span>
+        <span>{selectedTemplate?.title}</span>
 
         {/* Info Button */}
         <Popover className={styles.info}>
@@ -35,19 +36,73 @@ const Center = () => {
           </Popover.Button>
 
           <Popover.Panel className={styles.panel}>
-            Gradient Template
+            <span>Information</span>
             <div className="form-group">
               <div className="form-item">
-                <label htmlFor="gradient-start">Name</label>
-                <input type="text" defaultValue="Gradient Start" disabled />
+                <label htmlFor="name">Id</label>
+                <input
+                  type="text"
+                  id="id"
+                  defaultValue={selectedTemplate.id || "Untitled"}
+                  disabled
+                />
+              </div>
+              <div className="form-item">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  defaultValue={selectedTemplate.title || "Untitled"}
+                  disabled
+                />
               </div>
             </div>
             <div className="form-group">
               <div className="form-item">
-                <label htmlFor="gradient-start">Duration</label>
+                <label htmlFor="durationInFrames">Duration (Frames)</label>
                 <input
                   type="text"
-                  defaultValue={secondsToTime(durationSeconds)}
+                  id="durationInFrames"
+                  // TODO: Make the duration value dynamic
+                  defaultValue={selectedTemplate.durationInFrames}
+                  disabled
+                />
+              </div>
+              <div className="form-item">
+                <label htmlFor="durationInTime">Duration (Time)</label>
+                <input
+                  type="text"
+                  id="durationInTime"
+                  // TODO: Make the duration value dynamic
+                  defaultValue={`${secondsToTime(
+                    Math.floor(
+                      selectedTemplate?.durationInFrames / selectedTemplate?.fps
+                    )
+                  )}`}
+                  disabled
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="form-item">
+                <label htmlFor="fps">Frames per Second</label>
+                <input
+                  type="text"
+                  id="fps"
+                  // TODO: Make the duration value dynamic
+                  defaultValue={selectedTemplate.fps}
+                  disabled
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="form-item">
+                <label htmlFor="authors">Author(s)</label>
+                <input
+                  type="text"
+                  id="authors"
+                  // TODO: Make the duration value dynamic
+                  defaultValue={selectedTemplate.authors?.join(", ")}
                   disabled
                 />
               </div>
@@ -62,83 +117,21 @@ const Center = () => {
         <div className={styles.videoPlayer}>
           {typeof window !== "undefined" && (
             <Player
-              component={Stars}
-              compositionHeight={1080}
-              compositionWidth={1080}
-              durationInFrames={300}
-              fps={30}
+              autoplay
+              component={selectedTemplate?.template}
+              compositionHeight={selectedTemplate?.height || 1080}
+              compositionWidth={selectedTemplate?.width || 1920}
+              durationInFrames={selectedTemplate?.durationInFrames}
+              doubleClickToFullscreen={true}
+              inputProps={inputProps}
+              fps={selectedTemplate?.fps}
               style={{
-                width: 540,
-                height: 540,
+                width: "100%",
+                height: "100%",
               }}
               controls
             />
           )}
-        </div>
-
-        {/* Controller */}
-        <div className={styles.controller}>
-          {/* Play/Pause, rewind, forward */}
-          <div className={styles.playback}>
-            <button
-              className={styles.rewind}
-              onClick={() => {
-                setPlayerProgressSeconds(
-                  playerProgressSeconds - 10 > 0
-                    ? playerProgressSeconds - 10
-                    : 0
-                );
-              }}
-            >
-              <Backward color="var(--bg)" />
-            </button>
-            <button
-              className={styles.play}
-              onClick={() => setIsPlaying(!isPlaying)}
-            >
-              {isPlaying ? (
-                <Pause color="var(--bg)" />
-              ) : (
-                <Play color="var(--bg)" />
-              )}
-            </button>
-            <button
-              className={styles.forward}
-              onClick={() => {
-                setPlayerProgressSeconds(
-                  playerProgressSeconds + 10 < durationSeconds
-                    ? playerProgressSeconds + 10
-                    : durationSeconds
-                );
-              }}
-            >
-              <Forward color="var(--bg)" />
-            </button>
-          </div>
-
-          {/* Player progress */}
-          <div className={styles.progressContainer}>
-            <input
-              type="range"
-              className={styles.progress}
-              min="0"
-              max={durationSeconds}
-              step="1"
-              value={playerProgressSeconds}
-              onChange={(e) => setPlayerProgressSeconds(Number(e.target.value))}
-            ></input>
-          </div>
-
-          {/* Time elapsed and Duration */}
-          <div className={styles.time}>
-            <span className={styles.elapsed}>
-              {secondsToTime(playerProgressSeconds)}
-            </span>
-            <span className={styles.duration}>
-              {" "}
-              / {secondsToTime(durationSeconds)}
-            </span>
-          </div>
         </div>
       </div>
 
@@ -169,15 +162,6 @@ const Center = () => {
       </footer>
     </div>
   );
-};
-
-const secondsToTime = (elapsed) => {
-  const minutes = Math.floor(elapsed / 60);
-  const seconds = Math.floor(elapsed % 60);
-
-  return `${minutes < 9 ? "0" + minutes : minutes}:${
-    seconds < 9 ? "0" + seconds : seconds
-  }`;
 };
 
 export default Center;

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import Layout from "../../components/App/Layout";
+import Layout from "components/App/Layout";
 
 const App = () => {
   // Get theme from the url

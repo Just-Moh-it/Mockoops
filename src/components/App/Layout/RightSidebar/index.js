@@ -1,14 +1,35 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
+// Next
 import styles from "./index.module.scss";
-import { Export, Share } from "../../../../icons";
+// Miscellaneous
 import { useDropzone } from "react-dropzone";
-import { Video, CloudLightening, CloudLoading } from "../../../../icons";
 import { Shortcut } from "@shopify/react-shortcuts";
+// State
+import { useRecoilState, useRecoilValue } from "recoil";
+import { inputPropsState, templateState } from "state/global";
+
+// Icons
+import { Export, Share, Video, CloudLightening, CloudLoading } from "icons";
 
 const RightSidebar = () => {
+  const [inputProps, setInputProps] = useRecoilState(inputPropsState);
+  const currentTemplate = useRecoilValue(templateState);
+
+  // TODO: Add on drop functions
   const onDrop = useCallback((acceptedFiles) => {
     // Do something with the files
+    console.log(acceptedFiles);
   }, []);
+
+  useEffect(() => {
+    if (!currentTemplate?.inputPropsSchema) return;
+
+    const { inputPropsSchema } = currentTemplate;
+
+    inputPropsSchema.map(({ defaultValue, key }) => {
+      setInputProps((inputProps) => ({ ...inputProps, [key]: defaultValue }));
+    });
+  }, [currentTemplate]);
 
   // Either 'uninitialized', 'rendering', 'rendered', or 'error'
   const [renderingStatus, setRenderingStatus] = useState("uninitialized");
@@ -92,7 +113,11 @@ const RightSidebar = () => {
             <div className="form-item">
               <label
                 {...getRootProps()}
-                className={["file", isDragActive ? "active" : ""].join(" ")}
+                className={[
+                  styles.file,
+                  "file",
+                  isDragActive ? "active" : "",
+                ].join(" ")}
                 htmlFor="video-input"
               >
                 <input
@@ -119,18 +144,38 @@ const RightSidebar = () => {
             </div>
           </div>
           <hr />
-          <div className="form-group">
-            <div className="form-item">
-              <label htmlFor="title">Title Slide</label>
-              <input type="text" id="title" placeholder="1920" />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="form-item">
-              <label htmlFor="gradient">Gradient</label>
-              <input type="text" id="gradient" placeholder="1080" />
-            </div>
-          </div>
+
+          {/* Custom Configurations - Input Props */}
+          {currentTemplate?.inputPropsSchema?.map(
+            ({ key, name, type, defaultValue }) => {
+              console.log("Input Props set", inputProps);
+
+              return (
+                <div className="form-group">
+                  <div className="form-item">
+                    <label htmlFor={`config-input-${key}`}>{name}</label>
+                    {
+                      {
+                        text: (
+                          <input
+                            type="text"
+                            id={`config-input-${key}`}
+                            value={inputProps[key]}
+                            onChange={({ target: { value } }) =>
+                              setInputProps((inputProps) => ({
+                                ...inputProps,
+                                [key]: value,
+                              }))
+                            }
+                          />
+                        ),
+                      }[type]
+                    }
+                  </div>
+                </div>
+              );
+            }
+          )}
         </form>
       </div>
     </div>

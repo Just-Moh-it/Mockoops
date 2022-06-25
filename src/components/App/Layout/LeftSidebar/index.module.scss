@@ -2,6 +2,33 @@
   min-width: 330px;
   flex: 1;
   border-right: 1.5px solid var(--primary-light);
+  transition: all 0.3s ease-in-out;
+
+  &.collapsed {
+    min-width: 90px !important;
+    border-right: none;
+    overflow: hidden;
+    outline: 1.5px solid var(--primary-light);
+
+    .header {
+      padding: 12px;
+
+      .logo {
+        width: 20px;
+      }
+    }
+
+    .content {
+      padding: 10px;
+    }
+
+    .title,
+    .duration,
+    .heading,
+    .theme {
+      display: none;
+    }
+  }
 
   .header {
     display: flex;
@@ -49,7 +76,7 @@
       }
       .list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
         grid-gap: 20px;
 
         .item {
@@ -88,8 +115,8 @@
 
           .thumbnail {
             position: relative;
-            width: 138px;
-            height: 77px;
+            width: 100%;
+            aspect-ratio: 1920/1080;
             background: linear-gradient(
                 119.45deg,
                 #75ffee 0%,
@@ -99,6 +126,7 @@
               ),
               #ffffff;
             border-radius: 10px;
+            overflow: hidden;
           }
 
           .title {

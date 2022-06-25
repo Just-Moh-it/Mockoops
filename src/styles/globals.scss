@@ -152,12 +152,13 @@ hr {
       margin: 8px 0;
       border-radius: 10px;
 
-      &::placeholder {
+      &::placeholder,
+      &:disabled {
         color: var(--primary-lightest);
       }
 
-      &::focused {
-        outline: 1px solid var(--secondary);
+      &:focus {
+        outline: 1.5px solid var(--secondary);
       }
     }
   }

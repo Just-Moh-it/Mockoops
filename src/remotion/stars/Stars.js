@@ -22,12 +22,12 @@ const subtitle = {
   textAlign: "center",
 };
 
-export const Stars = () => {
+const Stars = () => {
   const edge = stats.data.search.edges[0].node.starredRepositories;
   const starsThisYear = edge.edges.filter(
     (e) => new Date(e.starredAt).getFullYear() === 2021
   );
-  
+
   return (
     <AbsoluteFill
       style={{
@@ -55,3 +55,5 @@ export const Stars = () => {
     </AbsoluteFill>
   );
 };
+
+export default Stars;

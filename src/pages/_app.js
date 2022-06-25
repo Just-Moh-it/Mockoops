@@ -1,14 +1,32 @@
-import "../styles/globals.scss";
+import { useEffect } from "react";
+import "styles/globals.scss";
 import { ThemeProvider } from "next-themes";
 import { ShortcutProvider } from "@shopify/react-shortcuts";
+import { RecoilRoot, useRecoilSnapshot, usePrevious } from "recoil";
+
+// Recoil devtools
+function DebugObserver() {
+  const snapshot = useRecoilSnapshot();
+  useEffect(() => {
+    console.debug("The following atoms were modified:");
+    for (const node of snapshot.getNodes_UNSTABLE({ isModified: true })) {
+      console.debug(node.key, snapshot.getLoadable(node));
+    }
+  }, [snapshot]);
+
+  return null;
+}
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ShortcutProvider>
-      <ThemeProvider attribute="class">
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </ShortcutProvider>
+    <RecoilRoot>
+      <ShortcutProvider>
+        <ThemeProvider attribute="class">
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </ShortcutProvider>
+      <DebugObserver />
+    </RecoilRoot>
   );
 }
 
