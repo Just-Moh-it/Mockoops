@@ -119,9 +119,17 @@ const Center = () => {
             <Player
               autoplay
               component={selectedTemplate?.template}
-              compositionHeight={selectedTemplate?.height || 1080}
-              compositionWidth={selectedTemplate?.width || 1920}
-              durationInFrames={selectedTemplate?.durationInFrames}
+              compositionHeight={
+                inputProps?.height || selectedTemplate?.height || 1080
+              }
+              compositionWidth={
+                inputProps?.width || selectedTemplate?.width || 1920
+              }
+              durationInFrames={
+                inputProps?.durationInSeconds
+                  ? inputProps?.durationInSeconds * selectedTemplate?.fps
+                  : selectedTemplate?.durationInFrames
+              }
               doubleClickToFullscreen={true}
               inputProps={inputProps}
               fps={selectedTemplate?.fps}

@@ -1,1 +1,224 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  flex-direction: column;
+
+  padding: 40px;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 13px;
+
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    .logo {
+      flex-shrink: 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 10px;
+
+      .navLink {
+        padding: 10px 20px;
+        border-radius: 100px;
+        color: var(--primary-lightest);
+        transition: all 0.3s ease-in-out;
+
+        &.active {
+          outline: 1px solid var(--primary-light);
+          color: var(--bg);
+        }
+
+        &:hover {
+          outline: 1px solid var(--primary-light);
+          color: var(--primary-lightest);
+        }
+      }
+    }
+
+    .right {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+
+      .iconLink {
+        padding: 5px;
+        border-radius: 500px;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          filter: brightness(50%);
+        }
+      }
+    }
+  }
+
+  .main {
+    .hero {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      flex-direction: column;
+      gap: 20px;
+
+      .headingWrapper {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        gap: 15px;
+        margin-top: 50px;
+        color: var(--bg);
+
+        .item {
+          font-size: 72px;
+          font-weight: 500;
+        }
+      }
+
+      .demoVideo {
+        margin-top: 50px;
+        max-width: 80%;
+
+        border-radius: 20px;
+        overflow: hidden;
+
+        .video {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .description {
+        margin-top: 40px;
+
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 200%;
+        max-width: 600px;
+        text-align: center;
+        color: var(--primary-lightest);
+      }
+
+      .ctas {
+        margin-top: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        .ctaBtn {
+          font-size: 12px;
+          padding: 12px 32px;
+        }
+      }
+    }
+
+    .reviews {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 100%;
+      gap: 32px;
+      margin-top: 80px;
+
+      .review {
+        padding: 32px;
+        background-color: var(--primary-light);
+        border-radius: 20px;
+        max-width: 300px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: 24px;
+
+        .author {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          width: 100%;
+          gap: 16px;
+
+          .avatar {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            border-radius: 50%;
+            flex-shrink: 0;
+          }
+          .info {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+
+            .name {
+            }
+
+            .description {
+              color: var(--primary-lightest);
+            }
+          }
+        }
+
+        .content {
+          font-size: 16px;
+          font-weight: normal;
+          line-height: 170%;
+          color: var(--primary-lightest);
+        }
+      }
+    }
+  }
+
+  .ctaBtn {
+    letter-spacing: 0;
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    font-weight: 600 !important;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: var(--bg);
+    color: var(--primary);
+    border-radius: 100px;
+    transition: all 0.2s ease-in-out;
+
+    font-weight: 500;
+    text-transform: uppercase;
+
+    &.outline {
+      background-color: transparent;
+      color: var(--bg);
+      border: 1px solid var(--primary-light);
+    }
+
+    &:hover {
+      filter: brightness(90%);
+    }
+  }
+}

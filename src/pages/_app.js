@@ -3,6 +3,7 @@ import "styles/globals.scss";
 import { ThemeProvider } from "next-themes";
 import { ShortcutProvider } from "@shopify/react-shortcuts";
 import { RecoilRoot, useRecoilSnapshot, usePrevious } from "recoil";
+import Transition from "components/Loading/transition";
 
 // Recoil devtools
 function DebugObserver() {
@@ -23,6 +24,7 @@ function MyApp({ Component, pageProps }) {
       <ShortcutProvider>
         <ThemeProvider attribute="class">
           <Component {...pageProps} />
+          <Transition />
         </ThemeProvider>
       </ShortcutProvider>
       <DebugObserver />

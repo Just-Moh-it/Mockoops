@@ -4,7 +4,7 @@ import { templates } from "remotion/templates";
 // Template Id
 export const templateIdState = atom({
   key: "selectedTemplateId",
-  default: "stars",
+  default: "rotate-title",
 });
 
 // Template

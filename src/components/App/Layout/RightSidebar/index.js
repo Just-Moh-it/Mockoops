@@ -2,38 +2,49 @@ import { useState, useCallback, useEffect } from "react";
 // Next
 import styles from "./index.module.scss";
 // Miscellaneous
-import { useDropzone } from "react-dropzone";
 import { Shortcut } from "@shopify/react-shortcuts";
+import DropBox from "components/DropBox";
 // State
 import { useRecoilState, useRecoilValue } from "recoil";
 import { inputPropsState, templateState } from "state/global";
 
 // Icons
-import { Export, Share, Video, CloudLightening, CloudLoading } from "icons";
+import {
+  Export,
+  Share,
+  Video,
+  CloudLightening,
+  CloudLoading,
+  Music,
+} from "icons";
 
 const RightSidebar = () => {
   const [inputProps, setInputProps] = useRecoilState(inputPropsState);
   const currentTemplate = useRecoilValue(templateState);
-
-  // TODO: Add on drop functions
-  const onDrop = useCallback((acceptedFiles) => {
-    // Do something with the files
-    console.log(acceptedFiles);
-  }, []);
+  const [files, setFiles] = useState({ audio: null, video: null });
 
   useEffect(() => {
-    if (!currentTemplate?.inputPropsSchema) return;
+    const { inputPropsSchema, durationInFrames, fps } = currentTemplate;
 
-    const { inputPropsSchema } = currentTemplate;
-
-    inputPropsSchema.map(({ defaultValue, key }) => {
+    [
+      { type: "text", key: "height", name: "Height" },
+      { type: "text", key: "width", name: "Width" },
+      {
+        type: "text",
+        key: "durationInSeconds",
+        defaultValue: durationInFrames / fps,
+        name: "Duration (sec)",
+      },
+      { type: "file", key: "video", name: "Video" },
+      { type: "file", key: "audio", name: "Audio" },
+      ...(inputPropsSchema || []),
+    ].map(({ defaultValue, key }) => {
       setInputProps((inputProps) => ({ ...inputProps, [key]: defaultValue }));
     });
   }, [currentTemplate]);
 
   // Either 'uninitialized', 'rendering', 'rendered', or 'error'
   const [renderingStatus, setRenderingStatus] = useState("uninitialized");
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const initiateRender = () => {
     setRenderingStatus("rendering");
@@ -43,6 +54,19 @@ const RightSidebar = () => {
       setRenderingStatus("rendered");
     }, 5000);
   };
+
+  const handleFileAdd = useCallback(({ acceptedFiles, key }) => {
+    const file = acceptedFiles.pop();
+    const fileURL = URL.createObjectURL(file);
+
+    setInputProps((currentProps) => ({ ...currentProps, [key]: fileURL }));
+    setFiles((currentFiles) => ({ ...currentFiles, [key]: file }));
+  }, []);
+
+  const deleteFile = useCallback((key) => {
+    setInputProps((currentProps) => ({ ...currentProps, [key]: null }));
+    setFiles((currentFiles) => ({ ...currentFiles, [key]: null }));
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -111,36 +135,99 @@ const RightSidebar = () => {
           {/* Controls */}
           <div className="form-group">
             <div className="form-item">
-              <label
-                {...getRootProps()}
-                className={[
-                  styles.file,
-                  "file",
-                  isDragActive ? "active" : "",
-                ].join(" ")}
-                htmlFor="video-input"
-              >
-                <input
-                  type="file"
-                  accept="video/*"
-                  id="video-input"
-                  {...getInputProps()}
-                />
-                <Video color="var(--bg)"></Video>
-                <span className="title">Add your video</span>
-                <span className="subtitle">Click or drag a video file</span>
-              </label>
+              <DropBox
+                icon={<Video color="var(--bg)" />}
+                title="Add Video"
+                subtitle="Click/drag"
+                deleteFile={() => deleteFile("video")}
+                onDrop={(acceptedFiles) =>
+                  handleFileAdd({ acceptedFiles, key: "video" })
+                }
+                accept="video/*"
+                // value={inputProps ? inputProps.video : []}
+                label="Video"
+                file={files?.video}
+                fileURL={inputProps?.video}
+              />
+            </div>
+            <div className="form-item">
+              <DropBox
+                icon={<Music color="var(--bg)" />}
+                title="Add Audio"
+                subtitle="Click/drag"
+                deleteFile={() => deleteFile("audio")}
+                onDrop={(acceptedFiles) =>
+                  handleFileAdd({ acceptedFiles, key: "audio" })
+                }
+                accept="audio/*"
+                // value={inputProps ? inputProps.audio : []}
+                label="Audio"
+                file={files?.audio}
+                fileURL={inputProps?.audio}
+              />
             </div>
           </div>
 
           <div className="form-group">
             <div className="form-item">
-              <label htmlFor="height">Height</label>
-              <input type="text" id="height" placeholder="1920" />
+              <label htmlFor="width">Width</label>
+              <input
+                type="text"
+                id="width"
+                placeholder="1080"
+                onKeyPress={(event) => {
+                  if (!/[0-9]/.test(event.key)) {
+                    event.preventDefault();
+                  }
+                }}
+                value={inputProps?.width}
+                onChange={({ target: { value } }) =>
+                  setInputProps((current) => ({
+                    ...current,
+                    width: Number(value),
+                  }))
+                }
+              />
             </div>
             <div className="form-item">
-              <label htmlFor="width">Width</label>
-              <input type="text" id="width" placeholder="1080" />
+              <label htmlFor="height">Height</label>
+              <input
+                value={inputProps?.height}
+                onChange={({ target: { value } }) =>
+                  setInputProps((current) => ({
+                    ...current,
+                    height: Number(value),
+                  }))
+                }
+                onKeyPress={(event) => {
+                  if (!/[0-9]/.test(event.key)) {
+                    event.preventDefault();
+                  }
+                }}
+                type="text"
+                id="height"
+                placeholder="1920"
+              />
+            </div>
+            <div className="form-item">
+              <label htmlFor="height">Length (s)</label>
+              <input
+                value={inputProps?.durationInSeconds}
+                onChange={({ target: { value } }) =>
+                  setInputProps((current) => ({
+                    ...current,
+                    durationInSeconds: Number(value),
+                  }))
+                }
+                onKeyPress={(event) => {
+                  if (!/[0-9]/.test(event.key)) {
+                    event.preventDefault();
+                  }
+                }}
+                type="text"
+                id="durationInSeconds"
+                placeholder="1920"
+              />
             </div>
           </div>
           <hr />

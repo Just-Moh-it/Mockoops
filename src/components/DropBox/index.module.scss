@@ -1,0 +1,29 @@
+.wrapper {
+  background: var(--primary-light);
+  padding: 10px;
+  border-radius: 10px;
+  position: relative;
+
+  .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    padding-top: 1px;
+
+    background: var(--primary);
+    border-radius: 50%;
+    color: rgb(255, 140, 140);
+    width: 30px;
+    height: 30px;
+  }
+
+  .title {
+    color: var(--bg);
+    margin-top: 10px;
+  }
+  .details {
+    color: var(--primary-lightest);
+    font-size: 12px;
+  }
+}

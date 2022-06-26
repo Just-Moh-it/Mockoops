@@ -112,6 +112,8 @@ hr {
         flex-direction: column;
         gap: 12px;
 
+        cursor: crosshair;
+
         &.active {
           filter: brightness(130%);
           border-color: var(--secondary);
