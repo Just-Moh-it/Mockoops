@@ -138,7 +138,8 @@ hr {
       }
     }
 
-    input[type="text"] {
+    input[type="text"],
+    input[type="number"] {
       padding: 10px 16px;
       width: 100%;
       border: none;
@@ -164,4 +165,36 @@ hr {
       }
     }
   }
+}
+
+.ctaBtn {
+  letter-spacing: 0;
+  font-weight: 600;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  font-weight: 600 !important;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: var(--bg);
+  color: var(--primary);
+  border-radius: 100px;
+  transition: all 0.2s ease-in-out;
+
+  font-weight: 500;
+  text-transform: uppercase;
+
+  &.outline {
+    background-color: transparent;
+    color: var(--bg);
+    border: 1px solid var(--primary-light);
+  }
+
+  &:hover {
+    filter: brightness(90%);
+  }
+}
+
+.perspective {
+  perspective: 1200px;
 }

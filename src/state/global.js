@@ -22,3 +22,13 @@ export const inputPropsState = atom({
   key: "inputProps",
   default: {},
 });
+
+export const renderingStatusState = atom({
+  key: "renderingStatus",
+  default: "uninitialized",
+});
+
+export const mediaFilesState = atom({
+  key: "mediaFiles",
+  default: { audio: null, video: null },
+});

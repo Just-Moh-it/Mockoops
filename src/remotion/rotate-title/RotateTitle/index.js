@@ -72,20 +72,22 @@ export const RotateTitle = ({
       >
         {/* Title Screen */}
         {flipValue < 0 ? (
-          <div style={titleScreenStyle}>
-            <h1 style={headingStyle}>{title || "Hello there!"}</h1>
-            <p style={subtitleStyle}>{subtitle || "We're happy to hear!"}</p>
-          </div>
+          <>
+            <div style={titleScreenStyle}>
+              <h1 style={headingStyle}>{title || "Hello there!"}</h1>
+              <p style={subtitleStyle}>{subtitle || "We're happy to hear!"}</p>
+            </div>
+          </>
         ) : (
           <div style={videoWrapperStyle}>
             <Video
               style={videoScreenStyle}
+              startFrom={0}
               src={
                 video ||
-                "https://remotion.ap-south-1.linodeobjects.com/Pexels Videos 1675442.mp4"
+                "https://remotion.ap-south-1.linodeobjects.com/Screen Recording 2022-06-27 at 6.54.27 PM.mov"
               }
               muted
-              loop
             />
           </div>
         )}

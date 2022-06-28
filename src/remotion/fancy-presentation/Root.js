@@ -1,0 +1,1 @@
+import { Composition } from 'remotion'

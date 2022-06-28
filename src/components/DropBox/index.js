@@ -21,15 +21,22 @@ const DropBox = ({
     onDrop: handleDrop,
   });
 
-  if (file)
+  const isFileUploaded =
+    fileURL && fileURL?.startsWith("https://") ? true : false;
+
+  if (file || fileURL)
     return (
       <label className={styles.wrapper}>
         {icon}
         <button className={styles.close} onClick={deleteFile}>
           {"×"}
         </button>
-        <p className={styles.title}>File Uploaded</p>
-        <p className={styles.details}>{file.name}</p>
+        <p className={styles.title}>
+          {isFileUploaded ? "Default added" : "File Added"}
+        </p>
+        <p className={styles.details}>
+          {isFileUploaded ? "Double-Click to +" : file?.name}
+        </p>
       </label>
     );
 

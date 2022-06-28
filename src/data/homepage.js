@@ -1,25 +1,4 @@
-import { GitHub, Twitter } from "icons";
-
 const data = {
-  header: {
-    navbarLinks: [
-      { href: "/", children: "home" },
-      { href: "#features", children: "features" },
-      { href: "#reviews", children: "reviews" },
-      { href: "#about", children: "about" },
-    ],
-    bannerButtons: [
-      {
-        href: "https://github.com/Just-Moh-it/Mockoops",
-        children: <GitHub color="var(--bg)" />,
-      },
-      {
-        href: "https://twitter.com/just_moh_it",
-        children: <Twitter color="var(--bg)" />,
-      },
-    ],
-    ctas: [{ href: "/create", children: "Get Started" }],
-  },
   hero: {
     headingItems: ["Drag.", "Edit.", "Done."],
     video: {
@@ -83,14 +62,34 @@ const data = {
         alt: "Feature 1",
       },
     },
+    {
+      info: {
+        heading: ["Write Articles", "with Ease"],
+        description:
+          "Fusce dapibus, tellus ac cursus commodo, tortor mauris imentum nibh, ut fermentum massa",
+      },
+      image: {
+        src: "/assets/images/features/1.webp",
+        alt: "Feature 1",
+      },
+    },
+    {
+      info: {
+        heading: ["Write Articles", "with Ease"],
+        description:
+          "Fusce dapibus, tellus ac cursus commodo, tortor mauris imentum nibh, ut fermentum massa",
+      },
+      image: {
+        src: "/assets/images/features/1.webp",
+        alt: "Feature 1",
+      },
+    },
   ],
   ctaBanner: {
-    content: {
-      heading: "Ready to work with the most Intuitive Editor of All Time?",
-      description:
-        "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.",
-      ctas: [{ href: "/create", children: "Get Started", type: "filled" }],
-    },
+    heading: "Ready to work with the most Intuitive Editor of All Time?",
+    description:
+      "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.",
+    ctas: [{ href: "/create", children: "Get Started", type: "filled" }],
   },
 };
 

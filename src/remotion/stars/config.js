@@ -1,4 +1,4 @@
-import Template from "./Stars"
+import Template from "./Stars";
 
 export const config = {
   id: "stars",

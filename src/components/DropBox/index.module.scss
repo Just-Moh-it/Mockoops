@@ -3,6 +3,8 @@
   padding: 10px;
   border-radius: 10px;
   position: relative;
+  width: 100%;
+  max-width: 140px;
 
   .close {
     position: absolute;
@@ -21,9 +23,16 @@
   .title {
     color: var(--bg);
     margin-top: 10px;
+    width: 100%;
+    text-overflow: ellipsis;
   }
   .details {
     color: var(--primary-lightest);
     font-size: 12px;
+    width: 100%;
+    height: max-content;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }

@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import { ShortcutProvider } from "@shopify/react-shortcuts";
 import { RecoilRoot, useRecoilSnapshot, usePrevious } from "recoil";
 import Transition from "components/Loading/transition";
+import { Toaster } from "react-hot-toast";
 
 // Recoil devtools
 function DebugObserver() {
@@ -25,6 +26,7 @@ function MyApp({ Component, pageProps }) {
         <ThemeProvider attribute="class">
           <Component {...pageProps} />
           <Transition />
+          <Toaster />
         </ThemeProvider>
       </ShortcutProvider>
       <DebugObserver />

@@ -4,9 +4,15 @@ import styles from "./index.module.scss";
 // Miscellaneous
 import { Shortcut } from "@shopify/react-shortcuts";
 import DropBox from "components/DropBox";
+import getBlobDuration from "get-blob-duration";
 // State
 import { useRecoilState, useRecoilValue } from "recoil";
-import { inputPropsState, templateState } from "state/global";
+import {
+  inputPropsState,
+  templateState,
+  renderingStatusState,
+  mediaFilesState,
+} from "state/global";
 
 // Icons
 import {
@@ -21,38 +27,46 @@ import {
 const RightSidebar = () => {
   const [inputProps, setInputProps] = useRecoilState(inputPropsState);
   const currentTemplate = useRecoilValue(templateState);
-  const [files, setFiles] = useState({ audio: null, video: null });
+  const [files, setFiles] = useRecoilState(mediaFilesState);
+  const [renderingStatus, setRenderingStatus] =
+    useRecoilState(renderingStatusState);
 
+  // Set the input props from the template config
   useEffect(() => {
     const { inputPropsSchema, durationInFrames, fps } = currentTemplate;
 
     [
-      { type: "text", key: "height", name: "Height" },
-      { type: "text", key: "width", name: "Width" },
+      {
+        type: "text",
+        key: "height",
+        defaultValue: currentTemplate?.height,
+        name: "Height",
+      },
+      {
+        type: "text",
+        key: "width",
+        defaultValue: currentTemplate?.width,
+        name: "Width",
+      },
       {
         type: "text",
         key: "durationInSeconds",
         defaultValue: durationInFrames / fps,
         name: "Duration (sec)",
       },
-      { type: "file", key: "video", name: "Video" },
-      { type: "file", key: "audio", name: "Audio" },
       ...(inputPropsSchema || []),
     ].map(({ defaultValue, key }) => {
       setInputProps((inputProps) => ({ ...inputProps, [key]: defaultValue }));
+
+      if (["video", "audio"].includes(key)) {
+        setFiles();
+      }
     });
   }, [currentTemplate]);
 
-  // Either 'uninitialized', 'rendering', 'rendered', or 'error'
-  const [renderingStatus, setRenderingStatus] = useState("uninitialized");
-
+  // Start rendering
   const initiateRender = () => {
     setRenderingStatus("rendering");
-
-    // After 5 seconds, change status again
-    setTimeout(() => {
-      setRenderingStatus("rendered");
-    }, 5000);
   };
 
   const handleFileAdd = useCallback(({ acceptedFiles, key }) => {
@@ -61,6 +75,22 @@ const RightSidebar = () => {
 
     setInputProps((currentProps) => ({ ...currentProps, [key]: fileURL }));
     setFiles((currentFiles) => ({ ...currentFiles, [key]: file }));
+
+    // Set new duration if it's a video
+    if (key === "video") {
+      getBlobDuration(fileURL).then((duration) => {
+        const { extraDuration } = currentTemplate;
+
+        const newDuration = currentTemplate
+          ? Math.floor(duration) + extraDuration
+          : Math.floor(duration);
+
+        setInputProps((currentProps) => ({
+          ...currentProps,
+          durationInSeconds: newDuration,
+        }));
+      });
+    }
   }, []);
 
   const deleteFile = useCallback((key) => {
@@ -172,7 +202,8 @@ const RightSidebar = () => {
             <div className="form-item">
               <label htmlFor="width">Width</label>
               <input
-                type="text"
+                type="number"
+                step="10"
                 id="width"
                 placeholder="1080"
                 onKeyPress={(event) => {
@@ -204,7 +235,8 @@ const RightSidebar = () => {
                     event.preventDefault();
                   }
                 }}
-                type="text"
+                type="number"
+                step="10"
                 id="height"
                 placeholder="1920"
               />
@@ -224,7 +256,7 @@ const RightSidebar = () => {
                     event.preventDefault();
                   }
                 }}
-                type="text"
+                type="number"
                 id="durationInSeconds"
                 placeholder="1920"
               />
@@ -236,6 +268,7 @@ const RightSidebar = () => {
           {currentTemplate?.inputPropsSchema?.map(
             ({ key, name, type, defaultValue }) => {
               console.log("Input Props set", inputProps);
+              if (["video", "audio"].includes(key)) return;
 
               return (
                 <div className="form-group">
@@ -245,7 +278,7 @@ const RightSidebar = () => {
                       {
                         text: (
                           <input
-                            type="text"
+                            type={isNaN(defaultValue) ? "text" : "number"}
                             id={`config-input-${key}`}
                             value={inputProps[key]}
                             onChange={({ target: { value } }) =>

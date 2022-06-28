@@ -1,0 +1,10 @@
+.wrapper {
+  padding: 40px;
+  background-color: var(--primary);
+  width: 100%;
+  margin-bottom: -40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -7,7 +7,7 @@ export const MyComp = () => {
         backgroundColor: "white",
       }}
     >
-      <h1>hi</h1>
+      <h1>Yo</h1>
     </AbsoluteFill>
   );
 };
