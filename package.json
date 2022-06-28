@@ -8,7 +8,7 @@
     "lint": "next lint",
     "ndev": "npm run dev",
     "preview": "npx remotion preview src/remotion/index.js",
-    "deploy": "node deploy"
+    "deploy": "pnpx ts-node src/deploy"
   },
   "dependencies": {
     "@aicore/linode-object-storage-lib": "^1.0.10",
@@ -22,6 +22,7 @@
     "@shopify/react-shortcuts": "^5.0.1",
     "framer-motion": "^6.3.13",
     "get-blob-duration": "^1.2.0",
+    "mongodb": "^4.7.0",
     "next": "12.0.7",
     "next-themes": "^0.2.0",
     "react": "17.0.2",
@@ -29,6 +30,7 @@
     "react-dom": "17.0.2",
     "react-dropzone": "^14.2.1",
     "react-hot-toast": "^2.2.0",
+    "react-stopwatch": "^2.0.4",
     "recoil": "^0.7.4",
     "remotion": "^3.0.22",
     "sass": "^1.52.3",

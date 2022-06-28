@@ -1,76 +1,62 @@
+import { getFunctions, renderMediaOnLambda } from "@remotion/lambda";
 import {
-  AwsRegion,
-  getFunctions,
-  renderMediaOnLambda,
-  RenderProgress,
-} from "@remotion/lambda";
-import { RenderProgressOrFinality } from "../pages/api/progress";
-import { CompactStats } from "../remotion/map-response-to-stats";
-import { COMP_NAME, SITE_ID } from "./config";
-import {
-  Finality,
   getRender,
   lockRender,
   saveRender,
   updateRenderWithFinality,
-} from "./db/renders";
-import { getRandomAwsAccount } from "./get-random-aws-account";
+} from "lib/db/renders";
 import { getRenderProgressWithFinality } from "./get-render-progress-with-finality";
-import { getRandomRegion } from "./regions";
-import { setEnvForKey } from "./set-env-for-key";
+import { getRandomRegion } from "deploy/regions";
 
-export const getRenderOrMake = async (username, stats) => {
-  const cache = await getRender(username);
+export const getRenderOrMake = async ({ inputId, inputProps, compId }) => {
+  const cache = await getRender(inputId);
   let _renderId = cache?.renderId ?? null;
   let _region = cache?.region ?? null;
   try {
     if (cache) {
-      const progress = await getRenderProgressWithFinality(
-        cache,
-        cache.account ?? 1
-      );
+      const progress = await getRenderProgressWithFinality(cache);
       return progress;
     }
     const region = getRandomRegion();
-    const account = getRandomAwsAccount();
-    setEnvForKey(account);
+    const account = 1;
+
     const [first] = await getFunctions({
       compatibleOnly: true,
       region,
     });
-    console.log(`Username=${username} Account=${account} Region=${region}`);
-    await lockRender(region, username, account, first.functionName);
+    console.log(`InputId=${inputId} Account=${account} Region=${region}`);
+    await lockRender(region, inputId, account, first.functionName);
 
-    const { renderId, bucketName } = await renderMediaOnLambda({
+    const { renderId: inputId, bucketName } = await renderMediaOnLambda({
       region: region,
       functionName: first.functionName,
-      serveUrl: SITE_ID,
-      composition: COMP_NAME,
-      inputProps: { stats: stats },
+      serveUrl: process.env.REMOTION_SITE_ID,
+      composition: compId,
+      inputProps,
       codec: "h264-mkv",
       imageFormat: "jpeg",
       maxRetries: 1,
       framesPerLambda: 80,
       privacy: "public",
     });
-    _renderId = renderId;
+    _renderId = inputId;
     _region = region;
     await saveRender({
       region: region,
       bucketName,
-      renderId,
-      username,
+      inputId,
+      inputId,
     });
-    const render = await getRender(username);
+    const render = await getRender(inputId);
     if (!render) {
-      throw new Error(`Didn't have error for ${username}`);
+      throw new Error(`Unable to fetch render for ${inputId}`);
     }
     const progress = await getRenderProgressWithFinality(render, account);
     return progress;
   } catch (err) {
-    console.log(`Failed to render video for ${username}`, err.stack);
+    console.log(`Failed to render video for inputId ${inputId}`, err.stack);
     if (_renderId && _region) {
-      await updateRenderWithFinality(_renderId, username, _region, {
+      await updateRenderWithFinality(_renderId, inputId, _region, {
         type: "error",
         errors: err.stack,
       });

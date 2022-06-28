@@ -1,5 +1,5 @@
-import { Finality, getRender } from "../../src/db/renders";
-import { getRenderProgressWithFinality } from "../../src/get-render-progress-with-finality";
+import { getRender } from "lib/db/renders";
+import { getRenderProgressWithFinality } from "lib/remotion/get-render-progress-with-finality";
 
 // type RequestData = {
 //   username: string,
@@ -18,8 +18,8 @@ import { getRenderProgressWithFinality } from "../../src/get-render-progress-wit
 //     };
 
 export default async function handler(req, res) {
-  const body = JSON.parse(req.body);
-  const render = await getRender(body.username);
+  const { inputId } = JSON.parse(req.body);
+  const render = await getRender(inputId);
   if (!render) {
     throw new Error("Could not get progress for ");
   }

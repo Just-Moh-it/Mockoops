@@ -6,8 +6,7 @@ import {
 import dotenv from "dotenv";
 import path from "path";
 import { usedRegions } from "./regions";
-import { setEnvForKey } from "./set-env-for-key";
-dotenv.config({path: __dirname + "/./../.env"});
+dotenv.config({ path: __dirname + "/./../.env" });
 
 console.log(`Found account. Deploying...`);
 
@@ -15,7 +14,6 @@ const execute = async () => {
   for (const region of usedRegions) {
     console.log(`Deploying to region ${region}`);
 
-    setEnvForKey();
     const { functionName } = await deployFunction({
       architecture: "arm64",
       createCloudWatchLogGroup: true,
@@ -23,9 +21,7 @@ const execute = async () => {
       timeoutInSeconds: 240,
       region,
     });
-    console.log(
-      `Deployed function "${functionName}" to ${region} in account`
-    );
+    console.log(`Deployed function "${functionName}" to ${region} in account`);
     const { bucketName } = await getOrCreateBucket({ region });
     const { serveUrl } = await deploySite({
       siteName: "mockoops",

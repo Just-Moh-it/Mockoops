@@ -1,11 +1,9 @@
 import { getRenderProgress } from "@remotion/lambda";
-import { updateRenderWithFinality } from "./db/renders";
+import { updateRenderWithFinality } from "lib/db/renders";
 import { getFinality } from "./get-render-or-make";
-import { setEnvForKey } from "./set-env-for-key";
 
-export const getRenderProgressWithFinality = async (render, accountNumber) => {
-  setEnvForKey(accountNumber);
-
+// Render: from db
+export const getRenderProgressWithFinality = async (render) => {
   if (render.finality) {
     return {
       type: "finality",
@@ -13,7 +11,7 @@ export const getRenderProgressWithFinality = async (render, accountNumber) => {
     };
   }
 
-  if (!render.renderId || !render.bucketName) {
+  if (!render.inputId || !render.bucketName) {
     return {
       progress: {
         percent: 0,
@@ -23,7 +21,7 @@ export const getRenderProgressWithFinality = async (render, accountNumber) => {
   }
 
   const progress = await getRenderProgress({
-    renderId: render.renderId,
+    renderId: render.inputId, // yes, renderId
     bucketName: render.bucketName,
     functionName: render.functionName,
     region: render.region,
@@ -33,12 +31,11 @@ export const getRenderProgressWithFinality = async (render, accountNumber) => {
 
   if (finality) {
     await updateRenderWithFinality(
-      render.renderId,
-      render.username,
+      render.inputId,
       render.region,
       finality
     );
-    console.log(`Updated ${render.renderId} with finality`, finality);
+    console.log(`Updated ${render.inputId} with finality`, finality);
     return {
       type: "finality",
       finality,

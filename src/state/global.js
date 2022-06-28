@@ -32,3 +32,8 @@ export const mediaFilesState = atom({
   key: "mediaFiles",
   default: { audio: null, video: null },
 });
+
+export const downloadProgressState = atom({
+  key: "downloadProgress",
+  default: null,
+});

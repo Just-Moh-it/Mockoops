@@ -19,6 +19,6 @@
     //   "@/*": ["./*"]
     // }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/remotion/stars/Composition.js", "src/remotion/stars/index.js", "src/remotion/stars/Root.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/remotion/stars/Composition.js", "src/remotion/stars/index.js", "src/remotion/stars/Root.js", "src/deploy/regions.js"],
   "exclude": ["node_modules"]
 }

@@ -11,6 +11,5 @@
     "experimentalDecorators": true,
     "sourceMap": true
   },
-  "include": ["deploy/**/*.ts"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
