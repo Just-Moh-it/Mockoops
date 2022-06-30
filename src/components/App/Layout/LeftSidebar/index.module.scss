@@ -3,6 +3,7 @@
   flex: 1;
   border-right: 1.5px solid var(--primary-light);
   transition: all 0.3s ease-in-out;
+  max-width: 350px;
 
   &.collapsed {
     min-width: 90px !important;

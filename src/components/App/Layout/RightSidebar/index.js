@@ -55,41 +55,47 @@ const RightSidebar = () => {
         setFiles();
       }
     });
-  }, [currentTemplate]);
+  }, [currentTemplate, setFiles, setInputProps]);
 
   // Start rendering
   const initiateRender = () => {
     setRenderingStatus("rendering");
   };
 
-  const handleFileAdd = useCallback(({ acceptedFiles, key }) => {
-    const file = acceptedFiles.pop();
-    const fileURL = URL.createObjectURL(file);
+  const handleFileAdd = useCallback(
+    ({ acceptedFiles, key }) => {
+      const file = acceptedFiles.pop();
+      const fileURL = URL.createObjectURL(file);
 
-    setInputProps((currentProps) => ({ ...currentProps, [key]: fileURL }));
-    setFiles((currentFiles) => ({ ...currentFiles, [key]: file }));
+      setInputProps((currentProps) => ({ ...currentProps, [key]: fileURL }));
+      setFiles((currentFiles) => ({ ...currentFiles, [key]: file }));
 
-    // Set new duration if it's a video
-    if (key === "video") {
-      getBlobDuration(fileURL).then((duration) => {
-        const { extraDuration } = currentTemplate;
+      // Set new duration if it's a video
+      if (key === "video") {
+        getBlobDuration(fileURL).then((duration) => {
+          const { extraDuration } = currentTemplate;
 
-        const newDuration = currentTemplate
-          ? Math.floor(duration) + extraDuration
-          : Math.floor(duration);
+          const newDuration = currentTemplate
+            ? Math.floor(duration) + extraDuration
+            : Math.floor(duration);
 
-        setInputProps((currentProps) => ({
-          ...currentProps,
-          durationInSeconds: newDuration,
-        }));
-      });
-    }
-  }, []);
+          setInputProps((currentProps) => ({
+            ...currentProps,
+            durationInSeconds: newDuration,
+          }));
+        });
+      }
+    },
+    [currentTemplate, setFiles, setInputProps]
+  );
 
-  const deleteFile = useCallback((key) => {
-    setInputProps((currentProps) => ({ ...currentProps, [key]: null }));
-    setFiles((currentFiles) => ({ ...currentFiles, [key]: null }));
-  }, []);
+  const deleteFile = useCallback(
+    (key) => {
+      setInputProps((currentProps) => ({ ...currentProps, [key]: null }));
+      setFiles((currentFiles) => ({ ...currentFiles, [key]: null }));
+    },
+    [setFiles, setInputProps]
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -241,7 +247,7 @@ const RightSidebar = () => {
               if (["video", "audio"].includes(key)) return;
 
               return (
-                <div className="form-group">
+                <div className="form-group" key={key}>
                   <div className="form-item">
                     <label htmlFor={`config-input-${key}`}>{name}</label>
                     {

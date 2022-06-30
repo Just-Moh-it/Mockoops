@@ -39,13 +39,13 @@ const RenderHandler = () => {
           ETA: ~1 min
           <br />
           Progress:
-          {renderingProgress?.progress?.percent * 100}%
+          {Math.floor(renderingProgress?.progress?.percent * 10000 || 0) / 100}%
         </>,
         {
           id: "render-status",
         }
       );
-  }, [renderingStatus, renderingProgress]);
+  }, [renderingStage, renderingStatus, renderingProgress]);
 
   const download = () => {
     if (!url) return;
@@ -180,6 +180,7 @@ const RenderHandler = () => {
         }
       } catch (err) {
         console.error(err);
+        setTimeout(poll, 5000);
       }
     };
 

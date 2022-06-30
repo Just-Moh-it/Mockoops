@@ -15,7 +15,7 @@ const DropBox = ({
 }) => {
   const handleDrop = useCallback((acceptedFiles) => {
     onDrop(acceptedFiles);
-  }, []);
+  }, [onDrop]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: handleDrop,
