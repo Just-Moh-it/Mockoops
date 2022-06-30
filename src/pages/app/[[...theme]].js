@@ -12,7 +12,6 @@ const App = () => {
   // Check if the theme is specified, else redirect to a certain page
   useEffect(() => {
     if (!theme) {
-      console.log("Routing");
       router.push("/app/getting-started");
     }
   }, [router]);

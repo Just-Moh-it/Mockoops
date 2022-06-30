@@ -1,23 +1,10 @@
-import { useEffect } from "react";
 import "styles/globals.scss";
 import { ThemeProvider } from "next-themes";
 import { ShortcutProvider } from "@shopify/react-shortcuts";
-import { RecoilRoot, useRecoilSnapshot, usePrevious } from "recoil";
-import Transition from "components/Loading/transition";
+import { RecoilRoot, useRecoilState } from "recoil";
 import { Toaster } from "react-hot-toast";
-
-// Recoil devtools
-function DebugObserver() {
-  const snapshot = useRecoilSnapshot();
-  useEffect(() => {
-    console.debug("The following atoms were modified:");
-    for (const node of snapshot.getNodes_UNSTABLE({ isModified: true })) {
-      console.debug(node.key, snapshot.getLoadable(node));
-    }
-  }, [snapshot]);
-
-  return null;
-}
+import Modal from "components/Modal";
+import { modalState } from "state/global";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -25,13 +12,20 @@ function MyApp({ Component, pageProps }) {
       <ShortcutProvider>
         <ThemeProvider attribute="class">
           <Component {...pageProps} />
-          <Transition />
           <Toaster />
+          <ModalHandler />
         </ThemeProvider>
       </ShortcutProvider>
-      <DebugObserver />
     </RecoilRoot>
   );
 }
+
+const ModalHandler = () => {
+  const [modal] = useRecoilState(modalState);
+
+  if (modal.isOpen) return <Modal content={modal?.content} />;
+
+  return <></>;
+};
 
 export default MyApp;

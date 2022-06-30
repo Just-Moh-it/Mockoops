@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
+// Utils
 import s3 from "./uploader";
-import toast from "react-hot-toast";
 import { v4 as uuidv4 } from "uuid";
+import { getHash } from "utils";
+import { Shortcut } from "@shopify/react-shortcuts";
+import JsFileDownloader from "js-file-downloader";
+// State
 import { useRecoilState, useRecoilValue } from "recoil";
 import ReactStopwatch from "react-stopwatch";
 import {
@@ -9,8 +13,14 @@ import {
   templateIdState,
   renderingStatusState,
   mediaFilesState,
+  modalState,
 } from "state/global";
-import { getHash } from "utils";
+
+// Visuals
+import toast from "react-hot-toast";
+import { CheckLottie, Export, Share, DownloadLottie } from "icons";
+import Lottie from "react-lottie-player";
+import styles from "./index.module.scss";
 
 const RenderHandler = () => {
   const inputProps = useRecoilValue(inputPropsState);
@@ -21,6 +31,40 @@ const RenderHandler = () => {
   const [renderingStage, setRenderingStage] = useState("uninitialized");
   const [renderingProgress, setRenderingProgress] = useState(null);
   const [finalStuffToSend, setFinalStuffToSend] = useState({});
+  const [_, setModal] = useRecoilState(modalState);
+
+  const download = () => {
+    if (!url) return;
+
+    setModal({
+      isOpen: true,
+      content: (
+        <div className={styles.modal}>
+          <Lottie
+            animationData={DownloadLottie}
+            play
+            style={{ width: "300px", height: "300px" }}
+            loop={true}
+          />
+          <div className={styles.info}>
+            <h2 className={styles.heading}>Downloading...</h2>
+            <p className={styles.description}>
+              The download will start shortly. If not, click{" "}
+              <a
+                href={url}
+                className={["underline", "secondary"].join(" ")}
+                download
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Here
+              </a>
+            </p>
+          </div>
+        </div>
+      ),
+    });
+  };
 
   useEffect(() => {
     const startUpload = async () => {
@@ -40,11 +84,8 @@ const RenderHandler = () => {
             const newFileName = `${uuidv4()}.${
               { audio: "mp3", video: "mp4" }[type]
             }`;
-            console.log("File", newFileName, file);
 
             const { location } = await s3.uploadFile(file, newFileName);
-
-            console.log("Uplaod complete", location);
 
             finalPropsLinks[type] = location;
           }
@@ -61,7 +102,6 @@ const RenderHandler = () => {
           ...(finalPropsLinks.audio && { audio: finalPropsLinks.audio }),
         };
 
-        console.log("This props to be sent", propsToSend);
         const input = { inputProps: propsToSend, compId: currentTemplateId };
 
         // Handle the rendering
@@ -110,7 +150,8 @@ const RenderHandler = () => {
             />
           }
           <br />
-          Progress:{renderingProgress || "0"}%
+          Progress:
+          {renderingProgress?.progress?.percent * 100}%
         </>,
         {
           id: "render-status",
@@ -141,10 +182,22 @@ const RenderHandler = () => {
       });
       const progressJson = await progress.json();
       setRenderingProgress(progressJson);
-      if (progressJson.type !== "finality") {
-        setTimeout(poll, 1000);
+
+      const { type } = progressJson;
+      if (type !== "finality") {
+        setTimeout(poll, 5000);
+      } else if (type === "finality") {
+        setRenderingStage("complete");
+        return "done";
+      } else if (type === "error") {
+        setRenderingState("Error");
+        return toast.error(`Error while rendering: ${progressJson?.errors}`, {
+          id: "render-status",
+        });
       }
     };
+
+    const processDownload = () => {};
 
     if (finalStuffToSend.compId) {
       switch (renderingStage) {
@@ -152,7 +205,55 @@ const RenderHandler = () => {
           startRendering();
         case "poll-progress":
           // Regularly poll for progress
-          poll();
+          setTimeout(poll, 2000);
+        case "complete":
+          if (renderingProgress?.finality?.url) {
+            toast.dismiss("render-status");
+
+            setModal({
+              isOpen: true,
+              content: (
+                <div className={styles.modal}>
+                  <Lottie
+                    animationData={CheckLottie}
+                    play
+                    style={{ width: "300px", height: "300px" }}
+                    loop={false}
+                  />
+
+                  <div className={styles.info}>
+                    <h2 className={styles.heading}>Download Ready</h2>
+                    <p className={styles.description}>
+                      Your render is complete and ready to download
+                    </p>
+                  </div>
+
+                  <div className={styles.buttons}>
+                    {/* Share */}
+                    <button className={styles.share}>
+                      <Share color="var(--bg)" />
+                    </button>
+                    {/* Export */}
+                    <a
+                      href={renderingProgress?.finality?.url}
+                      className={styles.export}
+                      download
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      <Export color="#fff" />
+                      <span>Download</span>
+                    </a>
+                  </div>
+                </div>
+              ),
+            });
+
+            setRenderingStatus("uninitialized");
+            setRenderingStage("uninitialized");
+            setRenderingProgress(null);
+            setFinalStuffToSend({});
+          }
         default:
           null;
       }

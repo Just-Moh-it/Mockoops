@@ -15,14 +15,7 @@ import {
 } from "state/global";
 
 // Icons
-import {
-  Export,
-  Share,
-  Video,
-  CloudLightening,
-  CloudLoading,
-  Music,
-} from "icons";
+import { Video, CloudLightening, CloudLoading, Music } from "icons";
 
 const RightSidebar = () => {
   const [inputProps, setInputProps] = useRecoilState(inputPropsState);
@@ -102,58 +95,35 @@ const RightSidebar = () => {
     <div className={styles.wrapper}>
       {/* Top Options */}
       <div className={styles.topOptions}>
-        {renderingStatus === "uninitialized" ||
-        renderingStatus === "rendering" ? (
-          <>
-            {/* Render Progress Buttons */}
-            <button
-              className={styles.export}
-              disabled={renderingStatus === "rendering"}
-              onClick={initiateRender}
-            >
-              {renderingStatus === "uninitialized" ? (
-                <>
-                  <CloudLightening color="#fff" />
-                  <span>Render</span>
+        {/* Render Progress Buttons */}
+        <button
+          className={styles.export}
+          disabled={renderingStatus === "rendering"}
+          onClick={initiateRender}
+        >
+          {renderingStatus !== "rendering" ? (
+            <>
+              <CloudLightening color="#fff" />
+              <span>Render</span>
 
-                  <div className="shortcut">
-                    <kbd>⌘</kbd>
-                    <span>+</span>
-                    <kbd>J</kbd>
-                    <Shortcut
-                      held={[["Control"], ["Meta"]]}
-                      ordered={["j"]}
-                      onMatch={initiateRender}
-                    />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <CloudLoading color="#fff" />
-                  <span>Rendering...</span>
-                </>
-              )}
-            </button>
-          </>
-        ) : (
-          <>
-            {/* Share */}
-            <button className={styles.share}>
-              <Share color="var(--bg)" />
-            </button>
-
-            {/* Export */}
-            <button className={styles.export}>
-              <Export color="#fff" />
-              <span>Export</span>
               <div className="shortcut">
                 <kbd>⌘</kbd>
                 <span>+</span>
                 <kbd>J</kbd>
+                <Shortcut
+                  held={[["Control"], ["Meta"]]}
+                  ordered={["j"]}
+                  onMatch={initiateRender}
+                />
               </div>
-            </button>
-          </>
-        )}
+            </>
+          ) : (
+            <>
+              <CloudLoading color="#fff" />
+              <span>Rendering...</span>
+            </>
+          )}
+        </button>
       </div>
 
       {/* Content */}
@@ -265,9 +235,9 @@ const RightSidebar = () => {
           <hr />
 
           {/* Custom Configurations - Input Props */}
-          {currentTemplate?.inputPropsSchema?.map(
-            ({ key, name, type, defaultValue }) => {
-              console.log("Input Props set", inputProps);
+          {currentTemplate?.inputPropsSchema
+            ?.filter(({ key }) => key !== "bgVideo")
+            ?.map(({ key, name, type, defaultValue }) => {
               if (["video", "audio"].includes(key)) return;
 
               return (
@@ -294,8 +264,7 @@ const RightSidebar = () => {
                   </div>
                 </div>
               );
-            }
-          )}
+            })}
         </form>
       </div>
     </div>

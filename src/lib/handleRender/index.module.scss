@@ -1,0 +1,64 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 20px;
+  text-align: center;
+  padding: 0 50px 50px;
+
+  .info {
+    margin-top: -70px;
+
+    .heading {
+      font-size: 24px;
+      font-weight: 500;
+      max-width: 700px;
+    }
+
+    .description {
+      font-size: 18px;
+      font-weight: normal;
+      line-height: 200%;
+      max-width: 600px;
+      text-align: center;
+      color: var(--primary-lightest);
+      max-width: 400px;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    .share {
+      border-radius: 50%;
+      background-color: var(--primary-light);
+      padding: 12px 13px 12px 11px;
+      height: 46px;
+      width: 46px;
+    }
+
+    .export {
+      border-radius: 1000px;
+      background-color: var(--primary-light);
+      padding: 11px 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #fff;
+      gap: 7px;
+
+      background: var(--secondary);
+      border-radius: 1000px;
+
+      &:disabled {
+        filter: brightness(80%);
+      }
+    }
+  }
+}

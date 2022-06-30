@@ -19,3 +19,5 @@ export { default as BackButton } from "./back-button";
 export { default as LogoFullSmall } from "./logo-full-small";
 export { default as GitHub } from "./github";
 export { default as Twitter } from "./twitter";
+export { default as CheckLottie } from "./check-lottie";
+export { default as DownloadLottie } from "./download-lottie";

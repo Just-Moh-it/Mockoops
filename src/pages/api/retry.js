@@ -1,19 +1,17 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { deleteRender, getRender } from "lib/db/renders";
-import { getRenderOrMake } from "lib/remotion/src/get-render-or-make";
-import { getStatsOrFetch } from "lib/remotion/src/get-stats-or-fetch";
+import { getRenderOrMake } from "lib/remotion/get-render-or-make";
 
 export default async function handler(req, res) {
   const body = JSON.parse(req.body);
-  const render = await getRender(body.inputId);
-  const stats = await getStatsOrFetch(body.inputId);
+  const { inputId, compId, inputProps } = body;
+
+  const render = await getRender(inputId);
   if (!render) {
-    throw new Error("Could not get progress for " + body.inputId);
+    throw new Error("Could not get progress for " + inputId);
   }
-  if (!stats) {
-    throw new Error("Could not get stats for" + body.inputId);
-  }
+
   await deleteRender(render);
-  const prog = await getRenderOrMake(body.inputId, stats);
+  const prog = await getRenderOrMake({ inputId, compId, inputProps });
+
   res.status(200).json(prog);
 }

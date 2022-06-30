@@ -1,5 +1,15 @@
 import { mongoClient } from "./mongo";
 
+// export type Render = {
+//   renderId: string | null,
+//   region: AwsRegion,
+//   username: string,
+//   bucketName: string | null,
+//   finality: Finality | null,
+//   functionName: string,
+//   account: number | undefined,
+// };
+
 export const rendersCollection = async () => {
   const client = await mongoClient;
   return client
@@ -7,19 +17,27 @@ export const rendersCollection = async () => {
     .collection(process.env.MONGO_RENDER_COLLECTION_NAME);
 };
 
-export const lockRender = async (region, inputId, account, functionName) => {
+export const lockRender = async ({
+  region,
+  inputId,
+  inputProps,
+  compId,
+  functionName,
+}) => {
   const coll = await rendersCollection();
   await coll.insertOne({
     region,
     inputId,
+    inputProps,
+    compId,
     bucketName: null,
     finality: null,
-    account,
+    renderId: null,
     functionName,
   });
 };
 
-export const saveRender = async ({ region, inputId, bucketName }) => {
+export const saveRender = async ({ region, inputId, renderId, bucketName }) => {
   const coll = await rendersCollection();
   await coll.updateOne(
     {
@@ -28,6 +46,7 @@ export const saveRender = async ({ region, inputId, bucketName }) => {
     },
     {
       $set: {
+        renderId,
         bucketName,
         finality: null,
       },
@@ -35,7 +54,12 @@ export const saveRender = async ({ region, inputId, bucketName }) => {
   );
 };
 
-export const updateRenderWithFinality = async (inputId, region, finality) => {
+export const updateRenderWithFinality = async (
+  renderId,
+  inputId,
+  region,
+  finality
+) => {
   if (finality && finality.type === "success") {
     console.log(`Successfully rendered video for ${inputId}.`);
   } else {
@@ -44,12 +68,12 @@ export const updateRenderWithFinality = async (inputId, region, finality) => {
   const coll = await rendersCollection();
   return coll.updateOne(
     {
-      inputId,
+      renderId,
       region,
     },
     {
       $set: {
-        finality,
+        finality: finality,
       },
     }
   );
@@ -64,9 +88,9 @@ export const getRender = async (inputId) => {
   return render ?? null;
 };
 
-export const deleteRender = async (inputId) => {
+export const deleteRender = async (render) => {
   const coll = await rendersCollection();
   await coll.deleteOne({
-    inputId,
+    _id: render._id,
   });
 };

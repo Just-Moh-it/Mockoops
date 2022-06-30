@@ -37,3 +37,11 @@ export const downloadProgressState = atom({
   key: "downloadProgress",
   default: null,
 });
+
+export const modalState = atom({
+  key: "modalState",
+  default: {
+    isOpen: false,
+    content: <></>,
+  },
+});

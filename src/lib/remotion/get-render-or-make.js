@@ -8,7 +8,7 @@ import {
 import { getRenderProgressWithFinality } from "./get-render-progress-with-finality";
 import { getRandomRegion } from "deploy/regions";
 
-export const getRenderOrMake = async ({ inputId, inputProps, compId }) => {
+export const getRenderOrMake = async ({ inputId, compId, inputProps }) => {
   const cache = await getRender(inputId);
   let _renderId = cache?.renderId ?? null;
   let _region = cache?.region ?? null;
@@ -18,17 +18,22 @@ export const getRenderOrMake = async ({ inputId, inputProps, compId }) => {
       return progress;
     }
     const region = getRandomRegion();
-    const account = 1;
 
     const [first] = await getFunctions({
       compatibleOnly: true,
       region,
     });
-    console.log(`InputId=${inputId} Account=${account} Region=${region}`);
-    await lockRender(region, inputId, account, first.functionName);
+    console.log(`Username=${inputId} Region=${region}`);
+    await lockRender({
+      region,
+      inputId,
+      inputProps,
+      compId,
+      functionName: first.functionName,
+    });
 
-    const { renderId: inputId, bucketName } = await renderMediaOnLambda({
-      region: region,
+    const { renderId, bucketName } = await renderMediaOnLambda({
+      region,
       functionName: first.functionName,
       serveUrl: process.env.REMOTION_SITE_ID,
       composition: compId,
@@ -39,24 +44,24 @@ export const getRenderOrMake = async ({ inputId, inputProps, compId }) => {
       framesPerLambda: 80,
       privacy: "public",
     });
-    _renderId = inputId;
+    _renderId = renderId;
     _region = region;
     await saveRender({
-      region: region,
+      region,
+      inputId,
+      renderId,
       bucketName,
-      inputId,
-      inputId,
     });
     const render = await getRender(inputId);
     if (!render) {
-      throw new Error(`Unable to fetch render for ${inputId}`);
+      throw new Error(`Didn't have render for ${inpudId}`);
     }
-    const progress = await getRenderProgressWithFinality(render, account);
+    const progress = await getRenderProgressWithFinality(render);
     return progress;
   } catch (err) {
-    console.log(`Failed to render video for inputId ${inputId}`, err.stack);
+    console.log(`Failed to render video for ${inpudId}`, err.stack);
     if (_renderId && _region) {
-      await updateRenderWithFinality(_renderId, inputId, _region, {
+      await updateRenderWithFinality(_renderId, inpudId, _region, {
         type: "error",
         errors: err.stack,
       });

@@ -7,28 +7,29 @@ export const collection = async () => {
     .collection(process.env.MONGO_CACHE_COLLECTION_NAME);
 };
 
-export const saveCache = async (renderId, inputProps) => {
+export const saveCache = async ({ inputId, inputProps, compId }) => {
   const coll = await collection();
   return coll.insertOne({
+    inputId,
     inputProps,
-    renderId,
+    compId,
   });
 };
 
-export const getFromCache = async (renderId) => {
+export const getFromCache = async (inputId) => {
   const coll = await collection();
   const f = await coll.findOne({
-    renderId,
+    inputId,
   });
   if (f) {
-    return f.inputProps;
+    return f;
   }
   return null;
 };
 
-export const deleteCache = async (renderId) => {
+export const deleteCache = async (inputId) => {
   const coll = await collection();
   await coll.deleteMany({
-    renderId,
+    inputId,
   });
 };

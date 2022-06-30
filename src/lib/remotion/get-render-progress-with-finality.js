@@ -2,7 +2,6 @@ import { getRenderProgress } from "@remotion/lambda";
 import { updateRenderWithFinality } from "lib/db/renders";
 import { getFinality } from "./get-render-or-make";
 
-// Render: from db
 export const getRenderProgressWithFinality = async (render) => {
   if (render.finality) {
     return {
@@ -11,7 +10,7 @@ export const getRenderProgressWithFinality = async (render) => {
     };
   }
 
-  if (!render.inputId || !render.bucketName) {
+  if (!render.renderId || !render.bucketName) {
     return {
       progress: {
         percent: 0,
@@ -21,7 +20,7 @@ export const getRenderProgressWithFinality = async (render) => {
   }
 
   const progress = await getRenderProgress({
-    renderId: render.inputId, // yes, renderId
+    renderId: render.renderId,
     bucketName: render.bucketName,
     functionName: render.functionName,
     region: render.region,
@@ -31,11 +30,12 @@ export const getRenderProgressWithFinality = async (render) => {
 
   if (finality) {
     await updateRenderWithFinality(
+      render.renderId,
       render.inputId,
       render.region,
       finality
     );
-    console.log(`Updated ${render.inputId} with finality`, finality);
+    console.log(`Updated ${render.renderId} with finality`, finality);
     return {
       type: "finality",
       finality,

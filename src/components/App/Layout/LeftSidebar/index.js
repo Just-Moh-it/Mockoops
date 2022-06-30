@@ -22,8 +22,6 @@ const LeftSidebar = () => {
     useRecoilState(templateIdState);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  console.log("Collapsed", isCollapsed);
-
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };

@@ -17,8 +17,6 @@ const Center = () => {
   const inputProps = useRecoilValue(inputPropsState);
 
   useEffect(() => {
-    console.log(playerProgressSeconds);
-
     return () => {};
   }, [playerProgressSeconds]);
 

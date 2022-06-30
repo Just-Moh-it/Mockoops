@@ -1,5 +1,5 @@
 // React Stuff
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "styles/Home.module.scss";
 // Next Stuff
 import Head from "next/head";
@@ -15,9 +15,33 @@ import { slap, fadeFromBottom } from "styles/animations";
 
 // States, Data
 import { homepageData } from "data";
+import { useRecoilState } from "recoil";
+import { modalState } from "state/global";
 
 export default function Home() {
-  const [isVideoExpanded, setIsVideoExpanded] = useState(false);
+  const [modal, setModal] = useRecoilState(modalState);
+  const vid = useRef();
+
+  const toggleModal = () => {
+    setModal({
+      isOpen: !modal.isOpen,
+      content: (
+        <div className="" style={{ width: "900px", height: "500px" }}>
+          <Embed
+            type={homepageData?.hero?.video?.content?.type}
+            config={homepageData?.hero?.video?.content}
+          />
+        </div>
+      ),
+    });
+  };
+
+  useEffect(() => {
+    const playVideo = () => {
+      vid.current.play();
+    };
+    playVideo();
+  }, []);
 
   return (
     <Layout>
@@ -54,7 +78,7 @@ export default function Home() {
           {/* Demo Video */}
           <motion.div
             className={[styles.demoVideo, "perspective"].join(" ")}
-            onClick={() => setIsVideoExpanded(true)}
+            onClick={toggleModal}
             {...{
               ...slap,
               transition: { ...slap.transition, delay: 0.6, duration: 1 },
@@ -66,18 +90,9 @@ export default function Home() {
               alt={homepageData?.hero?.video?.preview?.alt}
               autoPlay
               loop
+              muted
+              ref={vid}
             ></video>
-            <Modal
-              isOpen={isVideoExpanded}
-              onRequestClose={() => setIsVideoExpanded(false)}
-              contentLabel="Video"
-              style={{ width: "900px", height: "500px" }}
-            >
-              <Embed
-                type={homepageData?.hero?.video?.content?.type}
-                config={homepageData?.hero?.video?.content}
-              />
-            </Modal>
           </motion.div>
 
           {/* Description */}
