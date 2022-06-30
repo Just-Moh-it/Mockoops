@@ -3,11 +3,8 @@ import { useState, useEffect } from "react";
 import s3 from "./uploader";
 import { v4 as uuidv4 } from "uuid";
 import { getHash } from "utils";
-import { Shortcut } from "@shopify/react-shortcuts";
-import JsFileDownloader from "js-file-downloader";
 // State
 import { useRecoilState, useRecoilValue } from "recoil";
-import ReactStopwatch from "react-stopwatch";
 import {
   inputPropsState,
   templateIdState,
@@ -32,6 +29,23 @@ const RenderHandler = () => {
   const [renderingProgress, setRenderingProgress] = useState(null);
   const [finalStuffToSend, setFinalStuffToSend] = useState({});
   const [_, setModal] = useRecoilState(modalState);
+
+  useEffect(() => {
+    if (renderingStage === "rendering")
+      toast.loading(
+        <>
+          Rending Video...
+          <br />
+          ETA: ~1 min
+          <br />
+          Progress:
+          {renderingProgress?.progress?.percent * 100}%
+        </>,
+        {
+          id: "render-status",
+        }
+      );
+  }, [renderingStatus, renderingProgress]);
 
   const download = () => {
     if (!url) return;
@@ -125,39 +139,6 @@ const RenderHandler = () => {
     const startRendering = async () => {
       setRenderingStage("rendering");
 
-      toast.loading(
-        <>
-          Rending Video...
-          <br />
-          ETA: ~1 min
-          <br />
-          Elapsed:{" "}
-          {
-            <ReactStopwatch
-              seconds={0}
-              minites={0}
-              hours={0}
-              limit="00:20:00"
-              render={({ formatted, minutes }) => (
-                <>
-                  {formatted
-                    .split(":")
-                    .slice(1)
-                    .map((i) => (i.includes("undefined") ? minutes || "00" : i))
-                    .join(":")}
-                </>
-              )}
-            />
-          }
-          <br />
-          Progress:
-          {renderingProgress?.progress?.percent * 100}%
-        </>,
-        {
-          id: "render-status",
-        }
-      );
-
       const res = await fetch("/api/render", {
         method: "POST",
         body: JSON.stringify(finalStuffToSend),
@@ -176,28 +157,31 @@ const RenderHandler = () => {
     const poll = async () => {
       const { inputId } = finalStuffToSend;
 
-      const progress = await fetch("/api/progress", {
-        method: "POST",
-        body: JSON.stringify({ inputId }),
-      });
-      const progressJson = await progress.json();
-      setRenderingProgress(progressJson);
-
-      const { type } = progressJson;
-      if (type !== "finality") {
-        setTimeout(poll, 5000);
-      } else if (type === "finality") {
-        setRenderingStage("complete");
-        return "done";
-      } else if (type === "error") {
-        setRenderingState("Error");
-        return toast.error(`Error while rendering: ${progressJson?.errors}`, {
-          id: "render-status",
+      try {
+        const progress = await fetch("/api/progress", {
+          method: "POST",
+          body: JSON.stringify({ inputId }),
         });
+        const progressJson = await progress.json();
+        setRenderingProgress(progressJson);
+
+        const { type } = progressJson;
+
+        if (type !== "finality") {
+          setTimeout(poll, 5000);
+        } else if (type === "finality") {
+          setRenderingStage("complete");
+          return "done";
+        } else if (type === "error") {
+          setRenderingState("Error");
+          return toast.error(`Error while rendering: ${progressJson?.errors}`, {
+            id: "render-status",
+          });
+        }
+      } catch (err) {
+        console.error(err);
       }
     };
-
-    const processDownload = () => {};
 
     if (finalStuffToSend.compId) {
       switch (renderingStage) {
