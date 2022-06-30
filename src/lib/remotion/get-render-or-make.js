@@ -54,14 +54,14 @@ export const getRenderOrMake = async ({ inputId, compId, inputProps }) => {
     });
     const render = await getRender(inputId);
     if (!render) {
-      throw new Error(`Didn't have render for ${inpudId}`);
+      throw new Error(`Didn't have render for ${inputId}`);
     }
     const progress = await getRenderProgressWithFinality(render);
     return progress;
   } catch (err) {
-    console.log(`Failed to render video for ${inpudId}`, err.stack);
+    console.log(`Failed to render video for ${inputId}`, err.stack);
     if (_renderId && _region) {
-      await updateRenderWithFinality(_renderId, inpudId, _region, {
+      await updateRenderWithFinality(_renderId, inputId, _region, {
         type: "error",
         errors: err.stack,
       });
