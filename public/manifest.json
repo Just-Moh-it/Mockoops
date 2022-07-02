@@ -1,0 +1,38 @@
+{
+  "theme_color": "#0069FE",
+  "background_color": "#1C1A24",
+  "display": "fullscreen",
+  "scope": "/",
+  "start_url": ".",
+  "name": "Mockoops",
+  "description": "Create jaw-dropping mockups/animations. Just drag-drop your screen-recordings, select a template, and export.",
+  "short_name": "Mockoops",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-256x256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "maskable.png",
+      "sizes": "72x72",
+      "type": "image/x-icon",
+      "purpose": "maskable"
+    }
+  ]
+}

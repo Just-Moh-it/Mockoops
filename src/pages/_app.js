@@ -1,3 +1,4 @@
+import Head from "next/head";
 import "styles/globals.scss";
 import { ThemeProvider } from "next-themes";
 import { ShortcutProvider } from "@shopify/react-shortcuts";
@@ -9,6 +10,12 @@ import { modalState } from "state/global";
 function MyApp({ Component, pageProps }) {
   return (
     <RecoilRoot>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+        />
+      </Head>
       <ShortcutProvider>
         <ThemeProvider attribute="class">
           <Component {...pageProps} />
