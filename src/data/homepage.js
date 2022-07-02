@@ -25,29 +25,29 @@ const data = {
     {
       author: {
         name: "Mohit Yadav",
-        description: "Tinkerer at PckdHQ",
+        description: "Dev",
         avatar: { src: "/assets/images/avatars/1.jpg", alt: "Mohit" },
       },
       review:
-        "This is so fricking amazing that I'd like to have a call with the CEO of this company. Like literally dude, how good can someone make something?",
+        "I craved something that could make my boring screencasts share-worthy, while not having to install any heavy software. Found the perfect replacement!",
     },
     {
       author: {
-        name: "Mohit Yadav",
-        description: "Tinkerer at PckdHQ",
+        name: "Dhravya Shah",
+        description: "Student",
         avatar: { src: "/assets/images/avatars/1.jpg", alt: "Mohit" },
       },
       review:
-        "This is so fricking amazing that I'd like to have a call with the CEO of this company. Like literally dude, how good can someone make something?",
+        "OMG, I could make so good screencasts with this app. I'm so excited to see what it can do! Why didn't I find this before...!? I'm think I'm going to use this almost everyday",
     },
     {
       author: {
-        name: "Mohit Yadav",
-        description: "Tinkerer at PckdHQ",
+        name: "Amit Wani",
+        description: "SDE",
         avatar: { src: "/assets/images/avatars/1.jpg", alt: "Mohit" },
       },
       review:
-        "This is so fricking amazing that I'd like to have a call with the CEO of this company. Like literally dude, how good can someone make something?",
+        "When I first saw the trailer, I was blown away. The product turned out to be equally good. I guess I'll never upload plain screen-recordings again",
     },
   ],
   features: [

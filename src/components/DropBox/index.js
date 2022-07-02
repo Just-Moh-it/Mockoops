@@ -10,15 +10,20 @@ const DropBox = ({
   label,
   file,
   fileURL,
+  accept,
   deleteFile,
   ...props
 }) => {
-  const handleDrop = useCallback((acceptedFiles) => {
-    onDrop(acceptedFiles);
-  }, [onDrop]);
+  const handleDrop = useCallback(
+    (acceptedFiles) => {
+      onDrop(acceptedFiles);
+    },
+    [onDrop]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop: handleDrop,
+    accept: { [accept]: [] },
   });
 
   const isFileUploaded =
