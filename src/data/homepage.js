@@ -89,7 +89,7 @@ const data = {
     heading: "Ready to work with the most Intuitive Editor of All Time?",
     description:
       "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.",
-    ctas: [{ href: "/create", children: "Get Started", type: "filled" }],
+    ctas: [{ href: "/create", children: "It's free! Get Started", type: "filled" }],
   },
 };
 
