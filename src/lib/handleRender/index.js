@@ -232,6 +232,7 @@ const RenderHandler = () => {
                   </div>
                 </div>
               ),
+              props: { isConfetti: true },
             });
 
             setRenderingStatus("uninitialized");

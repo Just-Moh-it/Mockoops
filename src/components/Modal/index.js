@@ -2,17 +2,22 @@ import styles from "./index.module.scss";
 import { motion } from "framer-motion";
 import { modalState } from "state/global";
 import { useRecoilState } from "recoil";
+import { useWindowSize } from "@react-hook/window-size";
+import Confetti from "react-confetti";
 
 const Modal = () => {
   const [modal, setModal] = useRecoilState(modalState);
+  const [width, height] = useWindowSize();
 
   let title = null;
   let onClose = () => {};
+  let isConfetti = false;
 
   if (modal?.props) {
     const props = modal?.props;
     title = props?.title;
     onClose = props?.onClose;
+    isConfetti = props?.isConfetti;
   }
 
   const toggleModal = () => {
@@ -25,7 +30,9 @@ const Modal = () => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.overlay} onClick={toggleModal} />
+      <div className={styles.overlay} onClick={toggleModal}>
+        {isConfetti && <Confetti width={width} height={height} />}
+      </div>
       <motion.div
         initial={{ opacity: 0, x: "-50%", scale: 0.9, y: "-50%" }}
         animate={{ opacity: 1, x: "-50%", y: "-60%", scale: 1 }}
