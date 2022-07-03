@@ -18,6 +18,7 @@ import toast from "react-hot-toast";
 import { CheckLottie, Export, Share, DownloadLottie } from "icons";
 import Lottie from "react-lottie-player";
 import styles from "./index.module.scss";
+import LoadingBar from "react-top-loading-bar";
 
 const RenderHandler = () => {
   const inputProps = useRecoilValue(inputPropsState);
@@ -32,19 +33,9 @@ const RenderHandler = () => {
 
   useEffect(() => {
     if (renderingStage === "rendering")
-      toast.loading(
-        <>
-          Rending Video...
-          <br />
-          ETA: ~1 min
-          <br />
-          Progress:
-          {Math.floor(renderingProgress?.progress?.percent * 10000 || 0) / 100}%
-        </>,
-        {
-          id: "render-status",
-        }
-      );
+      toast.loading("Rending Video...", {
+        id: "render-status",
+      });
   }, [renderingStage, renderingStatus, renderingProgress]);
 
   const download = () => {
@@ -246,7 +237,18 @@ const RenderHandler = () => {
     }
   }, [finalStuffToSend, renderingStage]);
 
-  return <></>;
+  return (
+    <>
+      <LoadingBar
+        color="linear-gradient(90deg, rgba(64,201,255,1) 0%, rgba(232,28,255,1) 100%)"
+        progress={
+          Math.floor(renderingProgress?.progress?.percent * 10000 || 10000) /
+            100 ?? 100
+        }
+        style={{ zIndex: 1000 }}
+      />
+    </>
+  );
 };
 
 export default RenderHandler;
