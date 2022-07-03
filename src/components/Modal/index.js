@@ -10,13 +10,13 @@ const Modal = () => {
   const [width, height] = useWindowSize();
 
   let title = null;
-  let onClose = () => {};
+  let onClose;
   let isConfetti = false;
 
   if (modal?.props) {
     const props = modal?.props;
     title = props?.title;
-    onClose = props?.onClose;
+    onClose = props?.onClose ?? (() => {});
     isConfetti = props?.isConfetti;
   }
 

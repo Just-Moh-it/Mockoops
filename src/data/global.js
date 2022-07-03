@@ -5,7 +5,6 @@ export const header = {
     { href: "/", children: "home" },
     { href: "#reviews", children: "reviews" },
     { href: "#features", children: "features" },
-    { href: "/about", children: "about" },
   ],
   bannerButtons: [
     {

@@ -18,7 +18,7 @@ const data = {
       "Convert your boring screen recording into life-like mockups. Just drag-drop and export with a click.",
     ctas: [
       { href: "/create", children: "Get Started", type: "filled" },
-      { href: "#about", children: "About", type: "outline" },
+      { href: "#features", children: "About", type: "outline" },
     ],
   },
   reviewData: [
@@ -26,28 +26,28 @@ const data = {
       author: {
         name: "Mohit Yadav",
         description: "Dev",
-        avatar: { src: "/assets/images/avatars/1.jpg", alt: "Mohit" },
+        avatar: { src: "/assets/images/avatars/mohit.png", alt: "Mohit" },
       },
       review:
-        "I craved something that could make my boring screencasts share-worthy, while not having to install any heavy software. Found the perfect replacement!",
+        "I craved something that could make my boring screencasts share-worthy, while not having to install any heavy software. This app perfectly fits my needs... No fancy subscriptions too!",
     },
     {
       author: {
         name: "Dhravya Shah",
         description: "Student",
-        avatar: { src: "/assets/images/avatars/1.jpg", alt: "Mohit" },
+        avatar: { src: "/assets/images/avatars/dhravya.png", alt: "Dhravya" },
       },
       review:
-        "OMG, I could make so good screencasts with this app. I'm so excited to see what it can do! Why didn't I find this before...!? I'm think I'm going to use this almost everyday",
+        "Since I don't edit videos, and can't find any good tools on the internet to create mockups, this is literally perfect for all my needs. It also has a bunch of templates to choose from!",
     },
     {
       author: {
         name: "Amit Wani",
         description: "SDE",
-        avatar: { src: "/assets/images/avatars/1.jpg", alt: "Mohit" },
+        avatar: { src: "/assets/images/avatars/amit.png", alt: "Amit Wani" },
       },
       review:
-        "When I first saw the trailer, I was blown away. The product turned out to be equally good. I guess I'll never upload plain screen-recordings again",
+        "When I first saw the trailer, I was blown away. The product turned out to be equally awesome. I guess I'll never upload plain screen-recordings to twitter ever again.",
     },
   ],
   features: [
@@ -86,10 +86,12 @@ const data = {
     },
   ],
   ctaBanner: {
-    heading: "Ready to work with the most Intuitive Editor of All Time?",
+    heading: "It's clear. No subscriptions. No payments. No Bullshit",
     description:
-      "Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.",
-    ctas: [{ href: "/create", children: "It's free! Get Started", type: "filled" }],
+      "Start working with the most well-crafted drag-and-drop mockups tool for making your boring screencasts stand out!",
+    ctas: [
+      { href: "/create", children: "It's free! Get Started", type: "filled" },
+    ],
   },
 };
 
