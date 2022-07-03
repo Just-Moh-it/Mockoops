@@ -15,7 +15,7 @@ export const config = {
     audio: "https://remotion.ap-south-1.linodeobjects.com/assetssunset.mp3",
   },
   height: 800,
-  width: 1517,
+  width: 1516,
   authors: ["Mohit Yadav"],
   inputPropsSchema: [
     {

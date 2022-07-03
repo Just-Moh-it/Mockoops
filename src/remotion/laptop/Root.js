@@ -7,7 +7,7 @@ const Root = () => {
       component={Laptop}
       durationInFrames={300}
       fps={30}
-      width={1517}
+      width={1516}
       height={800}
       id="laptop"
     />
