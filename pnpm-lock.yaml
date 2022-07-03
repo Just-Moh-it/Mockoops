@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@aicore/linode-object-storage-lib': ^1.0.10
   '@headlessui/react': ^1.6.4
+  '@react-hook/window-size': ^3.0.7
   '@reduxjs/toolkit': ^1.8.2
   '@remotion/bundler': ^3.0.22
   '@remotion/cli': ^3.0.22
@@ -23,6 +24,7 @@ specifiers:
   next-themes: ^0.2.0
   react: 17.0.2
   react-aws-s3: ^1.5.0
+  react-confetti: ^6.1.0
   react-dat-gui: ^4.1.1
   react-dom: 17.0.2
   react-dropzone: ^14.2.1
@@ -38,6 +40,7 @@ specifiers:
 dependencies:
   '@aicore/linode-object-storage-lib': 1.0.10
   '@headlessui/react': 1.6.5_sfoxds7t5ydpegc3knd667wn6m
+  '@react-hook/window-size': 3.0.7_react@17.0.2
   '@reduxjs/toolkit': 1.8.2_react@17.0.2
   '@remotion/bundler': 3.0.22_sfoxds7t5ydpegc3knd667wn6m
   '@remotion/cli': 3.0.22_sfoxds7t5ydpegc3knd667wn6m
@@ -54,6 +57,7 @@ dependencies:
   next-themes: 0.2.0_3a345dz2zmxwb6fxivdhfkn45i
   react: 17.0.2
   react-aws-s3: 1.5.0
+  react-confetti: 6.1.0_react@17.0.2
   react-dat-gui: 4.1.1_oxfzelaz5ynxsop2v2nu2h2m64
   react-dom: 17.0.2_react@17.0.2
   react-dropzone: 14.2.1_react@17.0.2
@@ -2747,6 +2751,51 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+
+  /@react-hook/debounce/3.0.0_react@17.0.2:
+    resolution: {integrity: sha512-ir/kPrSfAzY12Gre0sOHkZ2rkEmM4fS5M5zFxCi4BnCeXh2nvx9Ujd+U4IGpKCuPA+EQD0pg1eK2NGLvfWejag==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@react-hook/latest': 1.0.3_react@17.0.2
+      react: 17.0.2
+    dev: false
+
+  /@react-hook/event/1.2.6_react@17.0.2:
+    resolution: {integrity: sha512-JUL5IluaOdn5w5Afpe/puPa1rj8X6udMlQ9dt4hvMuKmTrBS1Ya6sb4sVgvfe2eU4yDuOfAhik8xhbcCekbg9Q==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      react: 17.0.2
+    dev: false
+
+  /@react-hook/latest/1.0.3_react@17.0.2:
+    resolution: {integrity: sha512-dy6duzl+JnAZcDbNTfmaP3xHiKtbXYOaz3G51MGVljh548Y8MWzTr+PHLOfvpypEVW9zwvl+VyKjbWKEVbV1Rg==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      react: 17.0.2
+    dev: false
+
+  /@react-hook/throttle/2.2.0_react@17.0.2:
+    resolution: {integrity: sha512-LJ5eg+yMV8lXtqK3lR+OtOZ2WH/EfWvuiEEu0M3bhR7dZRfTyEJKxH1oK9uyBxiXPtWXiQggWbZirMCXam51tg==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@react-hook/latest': 1.0.3_react@17.0.2
+      react: 17.0.2
+    dev: false
+
+  /@react-hook/window-size/3.0.7_react@17.0.2:
+    resolution: {integrity: sha512-bK5ed/jN+cxy0s1jt2CelCnUt7jZRseUvPQ22ZJkUl/QDOsD+7CA/6wcqC3c0QweM/fPBRP6uI56TJ48SnlVww==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@react-hook/debounce': 3.0.0_react@17.0.2
+      '@react-hook/event': 1.2.6_react@17.0.2
+      '@react-hook/throttle': 2.2.0_react@17.0.2
+      react: 17.0.2
+    dev: false
 
   /@reduxjs/toolkit/1.8.2_react@17.0.2:
     resolution: {integrity: sha512-CtPw5TkN1pHRigMFCOS/0qg3b/yfPV5qGCsltVnIz7bx4PKTJlGHYfIxm97qskLknMzuGfjExaYdXJ77QTL0vg==}
@@ -6426,6 +6475,16 @@ packages:
       tinycolor2: 1.4.2
     dev: false
 
+  /react-confetti/6.1.0_react@17.0.2:
+    resolution: {integrity: sha512-7Ypx4vz0+g8ECVxr88W9zhcQpbeujJAVqL14ZnXJ3I23mOI9/oBVTQ3dkJhUmB0D6XOtCZEM6N0Gm9PMngkORw==}
+    engines: {node: '>=10.18'}
+    peerDependencies:
+      react: ^16.3.0 || ^17.0.1 || ^18.0.0
+    dependencies:
+      react: 17.0.2
+      tween-functions: 1.2.0
+    dev: false
+
   /react-dat-gui/4.1.1_oxfzelaz5ynxsop2v2nu2h2m64:
     resolution: {integrity: sha512-FdCUoXuCjh/8wXMc4AiZncthUQzuqRrr/iCi+V6byL48yQ4Bo1JK2534Lygt40yztaYVilj/AOKPkQYC8BI9fg==}
     peerDependencies:
@@ -7272,6 +7331,10 @@ packages:
 
   /tty-browserify/0.0.1:
     resolution: {integrity: sha512-C3TaO7K81YvjCgQH9Q1S3R3P3BtN3RIM8n+OvX4il1K1zgE8ZhI0op7kClgkxtutIE8hQrcrHBXvIheqKUUCxw==}
+
+  /tween-functions/1.2.0:
+    resolution: {integrity: sha512-PZBtLYcCLtEcjL14Fzb1gSxPBeL7nWvGhO5ZFPGqziCcr8uvHp0NDmdjBchp6KHL+tExcg0m3NISmKxhU394dA==}
+    dev: false
 
   /type-check/0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}

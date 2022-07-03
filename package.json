@@ -13,6 +13,7 @@
   "dependencies": {
     "@aicore/linode-object-storage-lib": "^1.0.10",
     "@headlessui/react": "^1.6.4",
+    "@react-hook/window-size": "^3.0.7",
     "@reduxjs/toolkit": "^1.8.2",
     "@remotion/bundler": "^3.0.22",
     "@remotion/cli": "^3.0.22",
@@ -29,6 +30,7 @@
     "next-themes": "^0.2.0",
     "react": "17.0.2",
     "react-aws-s3": "^1.5.0",
+    "react-confetti": "^6.1.0",
     "react-dat-gui": "^4.1.1",
     "react-dom": "17.0.2",
     "react-dropzone": "^14.2.1",
