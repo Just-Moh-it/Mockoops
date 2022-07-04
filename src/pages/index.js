@@ -84,6 +84,15 @@ export default function Home() {
               transition: { ...slap.transition, delay: 0.6, duration: 1 },
             }}
           >
+            <div className={styles.playBtn}>
+              <Image
+                src="/icons/play.png"
+                alt="play button"
+                layout="fill"
+                objectFit="cover"
+                objectPosition="center"
+              ></Image>
+            </div>
             <video
               className={styles.video}
               src={homepageData?.hero?.video?.preview?.src}
