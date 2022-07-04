@@ -16,12 +16,12 @@ const Modal = () => {
   if (modal?.props) {
     const props = modal?.props;
     title = props?.title;
-    onClose = props?.onClose ?? (() => {});
+    onClose = props?.onClose || (() => {});
     isConfetti = props?.isConfetti;
   }
 
   const toggleModal = () => {
-    if (modal?.isOpen) onClose();
+    if (modal?.isOpen && onClose) onClose();
     setModal({
       isOpen: !modal.isOpen,
       content: <></>,

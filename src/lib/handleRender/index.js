@@ -137,11 +137,13 @@ const RenderHandler = () => {
       const prog = await res.json();
       setRenderingProgress(prog);
 
-      try {
-      } catch (err) {
-        toast.error(`Error while rendering: ${err?.message}`, {
-          id: "render-status",
-        });
+      if (prog?.type === "finality" && prog?.finality?.errors) {
+        toast.error(
+          `Error while rendering: ${prog?.finality?.errors}. Please try later`,
+          {
+            id: "render-status",
+          }
+        );
       }
     };
 
@@ -155,19 +157,26 @@ const RenderHandler = () => {
         });
         const progressJson = await progress.json();
         setRenderingProgress(progressJson);
+        console.log(progressJson);
 
-        const { type } = progressJson;
+        const { type, finality } = progressJson;
 
         if (type !== "finality") {
           setTimeout(poll, 5000);
+        } else if (
+          type === "error" ||
+          (type === "finality" && finality?.type === "error")
+        ) {
+          setRenderingStage("Error");
+          return toast.error(
+            `Error while rendering: ${progressJson?.finality?.errors}`,
+            {
+              id: "render-status",
+            }
+          );
         } else if (type === "finality") {
           setRenderingStage("complete");
           return "done";
-        } else if (type === "error") {
-          setRenderingState("Error");
-          return toast.error(`Error while rendering: ${progressJson?.errors}`, {
-            id: "render-status",
-          });
         }
       } catch (err) {
         console.error(err);

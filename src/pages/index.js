@@ -24,7 +24,7 @@ export default function Home() {
 
   const toggleModal = () => {
     setModal({
-      isOpen: !modal.isOpen,
+      isOpen: true,
       content: (
         <div className="" style={{ width: "900px", height: "500px" }}>
           <Embed

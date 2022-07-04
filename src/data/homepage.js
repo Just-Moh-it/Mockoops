@@ -3,13 +3,13 @@ const data = {
     headingItems: ["Drag.", "Edit.", "Done."],
     video: {
       preview: {
-        src: "https://remotion.ap-south-1.linodeobjects.com/hero-thumb.mp4",
-        alt: "Hero Video Preview",
+        src: "https://remotion.ap-south-1.linodeobjects.com/Introducing Mockoops 📱 _ Create Mockups in seconds.mp4",
+        alt: "Video",
       },
       content: {
         type: "youtube",
-        src: "https://www.youtube.com/embed/1cD_F3j8a5c",
-        title: "Test title",
+        src: "https://www.youtube.com/embed/SSNmU3FXW4s",
+        title: "Introducing Mockoops",
         height: "100%",
         width: "100%",
       },
@@ -53,9 +53,9 @@ const data = {
   features: [
     {
       info: {
-        heading: ["Write Articles", "with Ease"],
+        heading: ["Just Drag", "and drop"],
         description:
-          "Fusce dapibus, tellus ac cursus commodo, tortor mauris imentum nibh, ut fermentum massa",
+          "Add your boring screen-recordings to one of the beautiful templates and instantly make them a piece of art.",
       },
       image: {
         src: "/assets/images/features/1.webp",
@@ -75,9 +75,9 @@ const data = {
     },
     {
       info: {
-        heading: ["Write Articles", "with Ease"],
+        heading: ["We're never out of", "Templates"],
         description:
-          "Fusce dapibus, tellus ac cursus commodo, tortor mauris imentum nibh, ut fermentum massa",
+          "Beautifying a screen-recording to upload on twitter? Announcing a new app? We've got you covered",
       },
       image: {
         src: "/assets/images/features/1.webp",
