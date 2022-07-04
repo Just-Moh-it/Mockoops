@@ -6,7 +6,7 @@ import {
 import dotenv from "dotenv";
 import path from "path";
 import { usedRegions } from "./regions";
-dotenv.config({ path: __dirname + "/./../.env" });
+dotenv.config();
 
 console.log(`Found account. Deploying...`);
 

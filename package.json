@@ -8,7 +8,9 @@
     "lint": "next lint",
     "ndev": "npm run dev",
     "preview": "npx remotion preview src/remotion/index.js",
-    "deploy": "pnpx ts-node src/deploy"
+    "deploy": "pnpx ts-node src/deploy",
+    "delete-deployments": "pnpx ts-node src/delete",
+    "update-deployments": "npm run delete-deployments && npm run deploy"
   },
   "dependencies": {
     "@aicore/linode-object-storage-lib": "^1.0.10",
