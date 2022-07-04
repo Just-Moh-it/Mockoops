@@ -164,7 +164,7 @@ export default function Home() {
         {/* Features */}
         <div className={styles.features} id="features">
           {homepageData?.features?.map(
-            ({ info: { heading, description }, image: { src, alt } }, idx) => (
+            ({ info: { heading, description }, image, video }, idx) => (
               <div
                 key={idx}
                 className={[
@@ -186,13 +186,33 @@ export default function Home() {
                   <h4 className={styles.description}>{description}</h4>
                 </motion.div>
                 <motion.div className={styles.image} {...slap}>
-                  <Image
-                    src={src}
-                    alt={alt}
-                    layout="fill"
-                    object-fit="cover"
-                    object-position="center"
-                  />
+                  {
+                    {
+                      image: (
+                        <Image
+                          src={image?.src}
+                          alt={image?.alt}
+                          layout="fill"
+                          object-fit="cover"
+                          object-position="center"
+                        />
+                      ),
+                      video: (
+                        <video
+                          src={video?.src}
+                          alt={video?.alt}
+                          autoPlay
+                          loop={video?.loop ?? true}
+                          muted
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      ),
+                    }[(video && "video") || (image && "image")]
+                  }
                 </motion.div>
               </div>
             )

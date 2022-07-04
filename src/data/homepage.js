@@ -57,31 +57,33 @@ const data = {
         description:
           "Add your boring screen-recordings to one of the beautiful templates and instantly make them a piece of art.",
       },
-      image: {
-        src: "/assets/images/features/1.webp",
-        alt: "Feature 1",
+      video: {
+        src: "/assets/images/features/1.mp4",
+        alt: "Drag-dropping into the video source",
       },
     },
-    {
-      info: {
-        heading: ["Write Articles", "with Ease"],
-        description:
-          "Fusce dapibus, tellus ac cursus commodo, tortor mauris imentum nibh, ut fermentum massa",
-      },
-      image: {
-        src: "/assets/images/features/1.webp",
-        alt: "Feature 1",
-      },
-    },
+
     {
       info: {
         heading: ["We're never out of", "Templates"],
         description:
           "Beautifying a screen-recording to upload on twitter? Announcing a new app? We've got you covered",
       },
-      image: {
-        src: "/assets/images/features/1.webp",
-        alt: "Feature 1",
+      video: {
+        src: "/assets/images/features/2.mp4",
+        alt: "Scrolling through templates",
+        loop: false,
+      },
+    },
+    {
+      info: {
+        heading: ["Export with", "A click"],
+        description:
+          "Blazing fast serverless-based exports, with no watermarks. Preview in the browser and finalize anytime.",
+      },
+      video: {
+        src: "/assets/images/features/3.mp4",
+        alt: "Showing the export process",
       },
     },
   ],
