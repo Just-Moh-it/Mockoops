@@ -29,12 +29,6 @@ const imageStyle = {
   position: "relative",
 };
 
-const image = {
-  borderRadius: "50%",
-  width: "100%",
-  height: "100%",
-};
-
 const titleStyle = {
   color: "pink",
   fontFamily: "Jelle",
