@@ -97,7 +97,7 @@ const AngledPresentation = ({ bgVideo, video, audio }) => {
             style={{ ...bgVideoStyles }}
             src={
               bgVideo ||
-              "https://remotion.ap-south-1.linodeobjects.com/assetspexels-artem-podrez-7234993.mp4"
+              "https://remotion.ap-south-1.linodeobjects.com/bg-v.mp4"
             }
             muted
           />

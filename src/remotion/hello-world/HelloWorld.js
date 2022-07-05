@@ -57,21 +57,6 @@ export const HelloWorld = ({ titleText, titleColor, video, audio }) => {
           <Subtitle />
         </Sequence>
       </AbsoluteFill>
-
-      {/* <AbsoluteFill>
-        <Video
-          src={
-            video ||
-            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-          }
-        />
-        <Audio
-          src={
-            audio ||
-            "https://dkihjuum4jcjr.cloudfront.net/ES_ITUNES/Come%202gether/ES_Come%202gether.mp3"
-          }
-        />
-      </AbsoluteFill> */}
     </AbsoluteFill>
   );
 };

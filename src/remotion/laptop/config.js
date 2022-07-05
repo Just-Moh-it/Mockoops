@@ -11,7 +11,7 @@ export const config = {
     bgVideo:
       "https://remotion.ap-south-1.linodeobjects.com/assetsproduction ID_4884237.mp4",
     video:
-      "https://remotion.ap-south-1.linodeobjects.com/assetspexels-arvin-latifi-6466763.mp4",
+      "https://remotion.ap-south-1.linodeobjects.com/scenery.mp4",
     audio: "https://remotion.ap-south-1.linodeobjects.com/assetssunset.mp3",
   },
   height: 800,
@@ -28,7 +28,7 @@ export const config = {
     {
       type: "file",
       defaultValue:
-        "https://remotion.ap-south-1.linodeobjects.com/assetspexels-arvin-latifi-6466763.mp4",
+        "https://remotion.ap-south-1.linodeobjects.com/scenery.mp4",
       name: "Video",
       key: "video",
     },

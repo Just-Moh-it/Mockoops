@@ -114,7 +114,7 @@ const Laptop = ({ video, audio, bgVideo }) => {
         <Video
           src={
             video ||
-            "https://remotion.ap-south-1.linodeobjects.com/assetspexels-arvin-latifi-6466763.mp4"
+            "https://remotion.ap-south-1.linodeobjects.com/scenery.mp4"
           }
           style={{
             width: "100%",

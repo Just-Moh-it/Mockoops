@@ -32,6 +32,7 @@ specifiers:
   react-lottie-player: ^1.4.3
   react-stopwatch: ^2.0.4
   react-top-loading-bar: ^2.1.0
+  react-yandex-metrika: ^2.6.0
   recoil: ^0.7.4
   remotion: ^3.0.22
   sass: ^1.52.3
@@ -66,6 +67,7 @@ dependencies:
   react-lottie-player: 1.4.3_react@17.0.2
   react-stopwatch: 2.0.4_react@17.0.2
   react-top-loading-bar: 2.1.0_react@17.0.2
+  react-yandex-metrika: 2.6.0_at7mkepldmzoo6silmqc5bca74
   recoil: 0.7.4_sfoxds7t5ydpegc3knd667wn6m
   remotion: 3.0.22_sfoxds7t5ydpegc3knd667wn6m
   sass: 1.53.0
@@ -6587,6 +6589,16 @@ packages:
     peerDependencies:
       react: ^16 || ^17
     dependencies:
+      react: 17.0.2
+    dev: false
+
+  /react-yandex-metrika/2.6.0_at7mkepldmzoo6silmqc5bca74:
+    resolution: {integrity: sha512-8K4wExsNZtY3DTxh1G8a+zWH9Pg8fw23MJcoJ4I/562qrHRnh7L5nteq3lnNL58dnNQbuuHIRoGgMjIo+r1GjA==}
+    peerDependencies:
+      prop-types: '*'
+      react: '*'
+    dependencies:
+      prop-types: 15.8.1
       react: 17.0.2
     dev: false
 
