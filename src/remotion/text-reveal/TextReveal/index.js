@@ -136,9 +136,9 @@ const QuickTeaser = ({ video, audio, text }) => {
           justifyContent: "center",
           boxShadow: "2px 2px 20px 5px rgba(0, 0, 0, .2)",
           transform: `
-          scale(${currentFromKeyframe?.scale ?? 1})
+          scale(${currentFromKeyframe?.scale ?? 1.1})
           translateX(${currentFromKeyframe?.translateX ?? 0}px)
-          translateY(${currentFromKeyframe?.translateY ?? 40}px)
+          translateY(${currentFromKeyframe?.translateY ?? 200}px)
           translateZ(${currentFromKeyframe?.translateZ ?? 0}px)
           rotateX(${currentFromKeyframe?.rotateX ?? 0}deg)
           rotateY(${currentFromKeyframe?.rotateY ?? 0}deg)
