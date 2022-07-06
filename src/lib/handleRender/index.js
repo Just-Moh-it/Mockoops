@@ -33,7 +33,7 @@ const RenderHandler = () => {
 
   useEffect(() => {
     if (renderingStage === "rendering")
-      toast.loading("Rending Video...", {
+      toast.loading("Rendering Video...", {
         id: "render-status",
       });
   }, [renderingStage, renderingStatus, renderingProgress]);
