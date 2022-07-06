@@ -1,4 +1,11 @@
 .wrapper {
+  .productHunt {
+    position: fixed;
+    left: 30px;
+    bottom: 30px;
+    z-index: 999;
+  }
+
   .hero {
     width: 100%;
     display: flex;

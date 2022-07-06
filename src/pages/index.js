@@ -9,7 +9,6 @@ import Image from "next/image";
 import Layout from "components/Layout";
 
 // 3rdP stuff
-import Modal from "components/Modal";
 import { motion } from "framer-motion";
 import { slap, fadeFromBottom } from "styles/animations";
 
@@ -21,6 +20,7 @@ import { modalState } from "state/global";
 export default function Home() {
   const [modal, setModal] = useRecoilState(modalState);
   const vid = useRef();
+  const widgetRef = useRef();
 
   const toggleModal = () => {
     setModal({
@@ -43,6 +43,20 @@ export default function Home() {
     playVideo();
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        widgetRef.current.style.bottom = "100px";
+      } else {
+        widgetRef.current.style.bottom = "50px";
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <Layout>
       <Head>
@@ -56,6 +70,27 @@ export default function Home() {
 
       {/* Main Content */}
       <main className={styles.wrapper}>
+        {/* Product hunt image */}
+        <Link
+          href="https://www.producthunt.com/posts/mockoops?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-mockoops"
+          passHref
+        >
+          <a
+            className={styles.productHunt}
+            target="_blank"
+            rel="noopener noreferrer"
+            ref={widgetRef}
+          >
+            <Image
+              src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=351692&theme=light"
+              alt="Mockoops - Create&#0032;jaw&#0045;dropping&#0032;animations&#0032;from&#0032;boring&#0032;screencasts | Product Hunt"
+              style="width: 250px; height: 54px;"
+              width={250}
+              height={54}
+            />
+          </a>
+        </Link>
+
         {/* Hero */}
         <div className={styles.hero}>
           {/* Headings */}

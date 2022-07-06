@@ -13,6 +13,9 @@ const nextConfig = withPWA({
     skipWaiting: true,
   },
   reactStrictMode: false,
+  images: {
+    domains: ["api.producthunt.com"],
+  },
 });
 
 module.exports = nextConfig;
