@@ -7,28 +7,23 @@ import { Toaster } from "react-hot-toast";
 import Modal from "components/Modal";
 import { modalState } from "state/global";
 
-// Metrics
-import WithYandexMetrika from "lib/withYandexMetrika";
-
 function MyApp({ Component, pageProps }) {
   return (
-    <WithYandexMetrika>
-      <RecoilRoot>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
-          />
-        </Head>
-        <ShortcutProvider>
-          <ThemeProvider attribute="class">
-            <Component {...pageProps} />
-            <Toaster />
-            <ModalHandler />
-          </ThemeProvider>
-        </ShortcutProvider>
-      </RecoilRoot>
-    </WithYandexMetrika>
+    <RecoilRoot>
+      <Head>
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+        />
+      </Head>
+      <ShortcutProvider>
+        <ThemeProvider attribute="class">
+          <Component {...pageProps} />
+          <Toaster />
+          <ModalHandler />
+        </ThemeProvider>
+      </ShortcutProvider>
+    </RecoilRoot>
   );
 }
 

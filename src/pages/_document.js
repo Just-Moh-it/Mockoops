@@ -15,6 +15,13 @@ export default function Document() {
         <link rel="manifest" href="/manifest.json" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/icons/apple-touch.png"></link>
+
+        <script
+          async
+          defer
+          data-website-id="f5c90616-9ce9-44ed-9cac-9db56c19c785"
+          src="https://umami.mohitya.dev/umami.js"
+        ></script>
       </Head>
       <body>
         <Main />
