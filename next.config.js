@@ -14,7 +14,7 @@ const nextConfig = withPWA({
   },
   reactStrictMode: false,
   images: {
-    domains: ["api.producthunt.com"],
+    domains: ["api.producthunt.com", "pbs.twimg.com"],
   },
 });
 

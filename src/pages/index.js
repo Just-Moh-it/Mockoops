@@ -84,7 +84,7 @@ export default function Home() {
             <Image
               src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=351692&theme=light"
               alt="Mockoops - Create&#0032;jaw&#0045;dropping&#0032;animations&#0032;from&#0032;boring&#0032;screencasts | Product Hunt"
-              style="width: 250px; height: 54px;"
+              style={{ width: "250px", height: "54px" }}
               width={250}
               height={54}
             />
