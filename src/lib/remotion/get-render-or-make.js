@@ -20,7 +20,7 @@ export const getRenderOrMake = async ({ inputId, compId, inputProps }) => {
     const region = getRandomRegion();
 
     const [first] = await getFunctions({
-      compatibleOnly: true,
+      compatibleOnly: false,
       region,
     });
     console.log(`Username=${inputId} Region=${region}`);
