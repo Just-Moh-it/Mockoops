@@ -5,12 +5,9 @@ const Footer = () => {
   return (
     <footer className={styles.wrapper}>
       <span>
-        &copy; 2022; Created for the{" "}
-        <Link
-          href="https://townhall.hashnode.com/build-with-linode-hackathon-june-2022"
-          passHref
-        >
-          <a className="underline">Hashnode {"×"} Linode Hackathon</a>
+        &copy; 2022; Support this project through{" "}
+        <Link href="https://github.com/sponsors/just-moh-it" passHref>
+          <a className="underline">💰 GitHub Sponsors</a>
         </Link>
       </span>
       <span>
