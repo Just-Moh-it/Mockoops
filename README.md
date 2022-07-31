@@ -110,13 +110,6 @@ The videos will only render to an mp4 file if you have all of this set-up. Howev
 
 The software is published under the [`MIT` License](/LICENSE).
 
-## 🫡 Created for
-
-This project was submitted as a hackathon submission on the [Hashnode x Linode Hackathon](https://townhall.hashnode.com/build-with-linode-hackathon-june-2022)
-
-![Hackathon](https://user-images.githubusercontent.com/48997634/177483360-b3a75ac4-e5b3-40c7-abfa-08acd5edd1c9.png)
-
-
 ## 🌟 Support this project
 
 ![](https://user-images.githubusercontent.com/48997634/174794647-0c851917-e5c9-4fb9-bf88-b61d89dc2f4f.gif)
