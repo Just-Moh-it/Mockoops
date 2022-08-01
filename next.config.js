@@ -11,10 +11,16 @@ const nextConfig = withPWA({
     dest: "public",
     register: true,
     skipWaiting: true,
+    disable: process.env.NODE_ENV === "development",
   },
   reactStrictMode: false,
   images: {
-    domains: ["api.producthunt.com", "pbs.twimg.com"],
+    domains: [
+      "api.producthunt.com",
+      "pbs.twimg.com",
+      "unavatar.io",
+      "mohitya.dev",
+    ],
   },
 });
 
