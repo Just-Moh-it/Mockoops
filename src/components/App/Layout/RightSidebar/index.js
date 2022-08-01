@@ -179,9 +179,11 @@ const RightSidebar = () => {
               <label htmlFor="width">Width</label>
               <input
                 type="number"
+                min="0"
+                max="3000"
                 step="10"
                 id="width"
-                placeholder="1080"
+                placeholder="1920"
                 onKeyPress={(event) => {
                   if (!/[0-9]/.test(event.key)) {
                     event.preventDefault();
@@ -213,8 +215,10 @@ const RightSidebar = () => {
                 }}
                 type="number"
                 step="10"
+                min="0"
+                max="3000"
                 id="height"
-                placeholder="1920"
+                placeholder="1080"
               />
             </div>
             <div className="form-item">
@@ -234,7 +238,9 @@ const RightSidebar = () => {
                 }}
                 type="number"
                 id="durationInSeconds"
-                placeholder="1920"
+                placeholder="10"
+                min="0"
+                max="100"
               />
             </div>
           </div>
