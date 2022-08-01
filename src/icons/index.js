@@ -21,3 +21,4 @@ export { default as GitHub } from "./github";
 export { default as Twitter } from "./twitter";
 export { default as CheckLottie } from "./check-lottie";
 export { default as DownloadLottie } from "./download-lottie";
+export { default as PlayBtn } from "./play-btn";
