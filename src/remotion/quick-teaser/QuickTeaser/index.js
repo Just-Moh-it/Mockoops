@@ -8,7 +8,7 @@ import {
   Audio,
 } from "remotion";
 
-const QuickTeaser = ({ video, audio }) => {
+const QuickTeaser = ({ video, audio, borderRadius }) => {
   const frame = useCurrentFrame();
 
   const keyframes = {
@@ -138,12 +138,11 @@ const QuickTeaser = ({ video, audio }) => {
           rotateY(${currentFromKeyframe?.rotateY ?? 0}deg)
           rotate(${currentFromKeyframe?.rotate ?? 0}deg)
           `,
-          borderRadius: "10px",
           width: "max-content",
           height: "max-content",
           margin: "auto",
           maxWidth: "1400px",
-          borderRadius: "30px",
+          borderRadius: borderRadius ? `${borderRadius}px` : "30px",
           overflow: "hidden",
         }}
       >

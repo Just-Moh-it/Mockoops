@@ -30,5 +30,14 @@ export const config = {
       name: "Audio",
       key: "audio",
     },
+    {
+      type: "number",
+      defaultValue: 30,
+      name: "Border Radius (px)",
+      key: "borderRadius",
+      step: 5,
+      min: 0,
+      max: 200,
+    },
   ],
 };

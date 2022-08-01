@@ -10,6 +10,7 @@ const Root = () => {
       width={1920}
       height={1080}
       id="quick-teaser"
+      borderRadius={30}
     />
   );
 };
