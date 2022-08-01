@@ -57,7 +57,9 @@ const Center = () => {
             </div>
             <div className="form-group">
               <div className="form-item">
-                <label htmlFor="durationInFrames">Duration (Frames)</label>
+                <label htmlFor="durationInFrames">
+                  Default Duration (Frames)
+                </label>
                 <input
                   type="text"
                   id="durationInFrames"
@@ -67,7 +69,7 @@ const Center = () => {
                 />
               </div>
               <div className="form-item">
-                <label htmlFor="durationInTime">Duration (Time)</label>
+                <label htmlFor="durationInTime">Default Duration (Time)</label>
                 <input
                   type="text"
                   id="durationInTime"
