@@ -10,7 +10,7 @@ const MyVideo = () => {
       width={1066}
       height={600}
       component={RotateTitle}
-      defaultProps={{ title: "Mohit's Blog", subtitle: "Releasing today!" }}
+      defaultProps={{ title: "My new Website", subtitle: "Releasing today!" }}
       loop
     />
   );

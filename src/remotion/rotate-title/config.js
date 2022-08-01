@@ -8,7 +8,7 @@ export const config = {
   fps: 30,
   template: RotateTitle,
   defaultProps: {
-    title: "Mohit's Blog",
+    title: "New Website",
     subtitle: "Releasing today!",
   },
   height: 600,
@@ -17,7 +17,7 @@ export const config = {
   inputPropsSchema: [
     {
       type: "text",
-      defaultValue: "Mohit's Blog",
+      defaultValue: "My new Website",
       name: "Title Text",
       key: "title",
     },
