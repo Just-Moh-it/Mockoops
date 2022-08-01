@@ -57,6 +57,7 @@
         transition: all 0.3s ease-in-out;
         opacity: 0.9;
         z-index: 1;
+        max-width: 100px;
 
         &:hover {
           opacity: 1;
