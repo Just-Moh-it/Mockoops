@@ -39,7 +39,7 @@ const data = {
         name: "Dhravya Shah",
         description: "Student",
         avatar: {
-          src: "https://pbs.twimg.com/profile_images/1547151428229136385/ytBDTnG8_400x400.png",
+          src: "https://unavatar.io/twitter/dhravyashah",
           alt: "Dhravya",
         },
       },
