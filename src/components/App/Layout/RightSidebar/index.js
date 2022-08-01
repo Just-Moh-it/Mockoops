@@ -13,6 +13,7 @@ import {
   renderingStatusState,
   mediaFilesState,
 } from "state/global";
+import toast from "react-hot-toast";
 
 // Icons
 import { Video, CloudLightening, CloudLoading, Music } from "icons";
@@ -78,6 +79,23 @@ const RightSidebar = () => {
           const newDuration = currentTemplate
             ? Math.floor(duration) + extraDuration
             : Math.floor(duration);
+
+          // Notify Error if current video is more than 2 min long
+          if (newDuration > 120) {
+            toast.error(
+              "Added video is too lengthy. Please trim and keep the length below 2 min"
+            );
+
+            // Remove the added video
+            // Check if local storage has bypassing flag
+            if (!localStorage?.getItem("bypass-video-length-check"))
+              setFiles((currentFiles) => ({ ...currentFiles, video: null }));
+
+            return setInputProps((currentProps) => ({
+              ...currentProps,
+              [key]: null,
+            }));
+          }
 
           setInputProps((currentProps) => ({
             ...currentProps,
@@ -249,30 +267,27 @@ const RightSidebar = () => {
           {/* Custom Configurations - Input Props */}
           {currentTemplate?.inputPropsSchema
             ?.filter(({ key }) => key !== "bgVideo")
-            ?.map(({ key, name, type, defaultValue }) => {
+            ?.map(({ key, name, type, defaultValue, min, max, step }) => {
               if (["video", "audio"].includes(key)) return;
+
+              const inferredType = isNaN(defaultValue) ? "text" : "number";
 
               return (
                 <div className="form-group" key={key}>
                   <div className="form-item">
                     <label htmlFor={`config-input-${key}`}>{name}</label>
-                    {
-                      {
-                        text: (
-                          <input
-                            type={isNaN(defaultValue) ? "text" : "number"}
-                            id={`config-input-${key}`}
-                            value={inputProps[key]}
-                            onChange={({ target: { value } }) =>
-                              setInputProps((inputProps) => ({
-                                ...inputProps,
-                                [key]: value,
-                              }))
-                            }
-                          />
-                        ),
-                      }[type]
-                    }
+                    <input
+                      type={inferredType}
+                      id={`config-input-${key}`}
+                      value={inputProps[key]}
+                      onChange={({ target: { value } }) =>
+                        setInputProps((inputProps) => ({
+                          ...inputProps,
+                          [key]: value,
+                        }))
+                      }
+                      {...(inferredType === "number" ? { step, min, max } : {})}
+                    />
                   </div>
                 </div>
               );
