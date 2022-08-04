@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@aicore/linode-object-storage-lib": "^1.0.10",
+    "@builder.io/partytown": "^0.6.4",
     "@headlessui/react": "^1.6.4",
     "@react-hook/window-size": "^3.0.7",
     "@reduxjs/toolkit": "^1.8.2",
