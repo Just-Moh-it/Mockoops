@@ -1,5 +1,6 @@
 {
-  "name": "github-wrapped",
+  "name": "mockoops",
+  "author": "Mohit Yadav (@Just_Moh_it)",
   "private": true,
   "scripts": {
     "dev": "next dev",
