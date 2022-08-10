@@ -95,7 +95,7 @@ The videos will only render to an mp4 file if you have all of this set-up. Howev
 1. Setup an Object storage bucket with Linode or any other cloud provider.
 1. Rename the `.env.example` file to `.env`.
 1. Install packatges using `npm install`
-1. Follow the inst9allation instructions at [Remotion Lambda Installation docs](https://www.remotion.dev/docs/lambda/setup#1-install-remotionlambda), **till step 6** .
+1. Follow the installation instructions at [Remotion Lambda Installation docs](https://www.remotion.dev/docs/lambda/setup#1-install-remotionlambda), **till step 6** .
 1. Once you have the key ID and Secret from the lambda console, edit these values into the `.env` file along with other values.
 1. Verify `.env` setup using `npx remotion lambda policies validate`. Only proceed if you get checkmarks on everything, else repeat from step `4`.
 1. Edit your preferred regions in `src/deploy/regions.ts` file.
@@ -116,4 +116,4 @@ The software is published under the [`MIT` License](/LICENSE).
 
 ### [⏫⭐️ Scroll to the star button](#start-of-content)
 
-If you believe this project has potential, feel free to **star this repo** just like many [amazing people](/stargazers) have.
+If you believe this project has potential, feel free to **star this repo** just like many [amazing people](https://github.com/Just-Moh-it/Mockoops/stargazers) have.
