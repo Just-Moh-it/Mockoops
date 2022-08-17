@@ -96,7 +96,7 @@ const RenderHandler = () => {
           }
         }
 
-        toast.success("Files uploaded successfully to Linode!", {
+        toast.success("Files uploaded successfully!", {
           id: "upload-status",
         });
 
