@@ -7,8 +7,9 @@ import {
   Easing,
   Audio,
 } from "remotion";
+// import Confetti from "remotion-confetti";
 
-const QuickTeaser = ({ video, audio, text }) => {
+const QuickTeaser = ({ video, audio, text, isConfettiEnabled = true }) => {
   const frame = useCurrentFrame();
 
   const keyframes = {
@@ -101,8 +102,26 @@ const QuickTeaser = ({ video, audio, text }) => {
         perspective: "1200px",
       }}
     >
-      {/* QuickTeaser Video */}
+      <AbsoluteFill style={{ backgroundColor: "black" }}>
+        {/* Confetti, if enabled */}
+        {/* {isConfettiEnabled && (
+          <Confetti
+            particleCount={200}
+            startVelocity={50}
+            decay={1}
+            spread={360}
+            ticks={100}
+            gravity={0.5}
+            x={960}
+            y={360}
+            
+            scalar={1}
+            colors={["#000000", "#FFFFFF"]}
+          />
+        )} */}
+      </AbsoluteFill>
 
+      {/* Background audio */}
       <Audio
         src={
           audio ||
@@ -153,7 +172,7 @@ const QuickTeaser = ({ video, audio, text }) => {
           overflow: "hidden",
         }}
       >
-        <Video
+        {/* <Video
           src={
             video ||
             "https://remotion.ap-south-1.linodeobjects.com/assetsPckd-2 -Dashboard---Anime-3.mp4"
@@ -164,7 +183,7 @@ const QuickTeaser = ({ video, audio, text }) => {
             minWidth: "1400px",
           }}
           muted
-        />
+        /> */}
       </AbsoluteFill>
     </AbsoluteFill>
   );
