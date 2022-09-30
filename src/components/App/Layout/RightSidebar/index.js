@@ -60,6 +60,38 @@ const RightSidebar = () => {
 
   // Start rendering
   const initiateRender = () => {
+    return toast.error(
+      <div>
+        <p style={{ marginBottom: "10px" }}>
+          <span style={{ fontWeight: "600" }}>We're sorry 😕</span>, having a
+          hard time rendering your video. Due to{" "}
+          <span style={{ fontWeight: "600" }}>high demand</span> for Mockoops,
+          AWS bills are off the roof, and being a free and open source project
+          means we won't be able to support Mockoops' rendering any longer.
+        </p>
+        <p style={{ marginBottom: "10px" }}>
+          Currently, you could{" "}
+          <span style={{ fontWeight: "600" }}>screen record</span> the video
+          instead of exporting it.
+        </p>
+        <p>
+          Sorry for the inconvenience. We'll be{" "}
+          <span style={{ fontWeight: "600" }}>back soon</span>. Meanwhile, you
+          could{" "}
+          <a
+            href="https://github.com/sponsors/just-moh-it"
+            style={{ textDecoration: "underline" }}
+          >
+            be our first sponsor 🎉
+          </a>
+        </p>
+      </div>,
+      {
+        position: "bottom-left",
+        duration: 20000,
+      }
+    );
+
     setRenderingStatus("rendering");
   };
 
