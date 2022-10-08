@@ -38,7 +38,7 @@ export const getRenderOrMake = async ({ inputId, compId, inputProps }) => {
       serveUrl: process.env.REMOTION_SITE_ID,
       composition: compId,
       inputProps,
-      codec: "h264-mkv",
+      codec: "h264",
       imageFormat: "jpeg",
       maxRetries: 1,
       framesPerLambda: 80,
