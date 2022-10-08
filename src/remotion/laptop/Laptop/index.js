@@ -80,14 +80,14 @@ const Laptop = ({ video, audio, bgVideo }) => {
       <Video
         src={
           bgVideo ||
-          "https://remotion.ap-south-1.linodeobjects.com/assetsproduction ID_4884237.mp4"
+          "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/production+ID_4884237.mp4"
         }
         muted
       />
       <Audio
         src={
           audio ||
-          "https://remotion.ap-south-1.linodeobjects.com/assetssunset.mp3"
+          "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/assetssunset.mp3"
         }
         loop
       />
@@ -114,7 +114,7 @@ const Laptop = ({ video, audio, bgVideo }) => {
         <Video
           src={
             video ||
-            "https://remotion.ap-south-1.linodeobjects.com/scenery.mp4"
+            "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/pexels-arvin-latifi-6466763+(1).mp4"
           }
           style={{
             width: "100%",

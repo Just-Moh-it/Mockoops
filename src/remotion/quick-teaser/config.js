@@ -8,9 +8,10 @@ export const config = {
   fps: 30,
   template: QuickTeaser,
   defaultProps: {
-    video: "https://remotion.ap-south-1.linodeobjects.com/assetsfinal.mp4",
+    video:
+      "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/assetsfinal.mp4",
     audio:
-      "https://remotion.ap-south-1.linodeobjects.com/assetsES_Love Me Back.mp3",
+      "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/ES_Love+Me+Back.mp3",
   },
   height: 1080,
   width: 1920,
@@ -19,14 +20,14 @@ export const config = {
     {
       type: "file",
       defaultValue:
-        "https://remotion.ap-south-1.linodeobjects.com/assetsfinal.mp4",
+        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/assetsfinal.mp4",
       name: "Video",
       key: "video",
     },
     {
       type: "file",
       defaultValue:
-        "https://remotion.ap-south-1.linodeobjects.com/assetsES_Love Me Back.mp3",
+        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/ES_Love+Me+Back.mp3",
       name: "Audio",
       key: "audio",
     },
