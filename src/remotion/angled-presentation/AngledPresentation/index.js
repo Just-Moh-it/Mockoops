@@ -97,14 +97,14 @@ const AngledPresentation = ({ bgVideo, video, audio }) => {
             style={{ ...bgVideoStyles }}
             src={
               bgVideo ||
-              "https://remotion.ap-south-1.linodeobjects.com/bg-v.mp4"
+              "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/pexels-artem-podrez-7234993+(1).mp4"
             }
             muted
           />
           <Audio
             src={
               audio ||
-              "https://remotion.ap-south-1.linodeobjects.com/assets205Oc_MHyd0O0L8y.mp3"
+              "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/prototypr.mp3"
             }
           />
         </Loop>
@@ -121,7 +121,7 @@ const AngledPresentation = ({ bgVideo, video, audio }) => {
         <Video
           src={
             video ||
-            "https://remotion.ap-south-1.linodeobjects.com/Screen Recording 2022-06-27 at 6.54.27 PM.mov"
+            "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/Screen+Recording+2022-06-27+at+6.54.27+PM+(1).mov"
           }
           style={{ ...deviceVideoStyles }}
           muted

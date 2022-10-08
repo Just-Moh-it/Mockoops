@@ -30,14 +30,14 @@ export const config = {
     {
       type: "file",
       defaultValue:
-        "https://remotion.ap-south-1.linodeobjects.com/Screen Recording 2022-06-27 at 6.54.27 PM.mov",
+        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/Screen+Recording+2022-06-27+at+6.54.27+PM+(1).mov",
       name: "Video",
       key: "video",
     },
     {
       type: "file",
       defaultValue:
-        "https://remotion.ap-south-1.linodeobjects.com/ES_Come 2gether.mp3",
+        "https://dkihjuum4jcjr.cloudfront.net/ES_ITUNES/Come%202gether/ES_Come%202gether.mp3",
       name: "Audio",
       key: "audio",
     },

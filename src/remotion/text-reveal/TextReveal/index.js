@@ -125,7 +125,7 @@ const QuickTeaser = ({ video, audio, text, isConfettiEnabled = true }) => {
       <Audio
         src={
           audio ||
-          "https://remotion.ap-south-1.linodeobjects.com/assetsES_Love Me Back.mp3"
+          "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/ES_Love+Me+Back.mp3"
         }
         loop
       />
@@ -175,7 +175,7 @@ const QuickTeaser = ({ video, audio, text, isConfettiEnabled = true }) => {
         {/* <Video
           src={
             video ||
-            "https://remotion.ap-south-1.linodeobjects.com/assetsPckd-2 -Dashboard---Anime-3.mp4"
+            "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/Pckd-2+-Dashboard---Anime-3.mp4"
           }
           style={{
             width: "100%",
