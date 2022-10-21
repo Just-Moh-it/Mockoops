@@ -9,10 +9,11 @@ export const config = {
   template: Laptop,
   defaultProps: {
     bgVideo:
-      "https://remotion.ap-south-1.linodeobjects.com/assetsproduction ID_4884237.mp4",
+      "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/production+ID_4884237.mp4",
     video:
-      "https://remotion.ap-south-1.linodeobjects.com/scenery.mp4",
-    audio: "https://remotion.ap-south-1.linodeobjects.com/assetssunset.mp3",
+      "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/scenery.mp4",
+    audio:
+      "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/assetssunset.mp3",
   },
   height: 800,
   width: 1516,
@@ -21,21 +22,21 @@ export const config = {
     {
       type: "file",
       defaultValue:
-        "https://remotion.ap-south-1.linodeobjects.com/assetsproduction ID_4884237.mp4",
+        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/production+ID_4884237.mp4",
       name: "Background Video",
       key: "bgVideo",
     },
     {
       type: "file",
       defaultValue:
-        "https://remotion.ap-south-1.linodeobjects.com/scenery.mp4",
+        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/scenery.mp4",
       name: "Video",
       key: "video",
     },
     {
       type: "file",
       defaultValue:
-        "https://remotion.ap-south-1.linodeobjects.com/assetssunset.mp3",
+        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/assetssunset.mp3",
       name: "Audio",
       key: "audio",
     },

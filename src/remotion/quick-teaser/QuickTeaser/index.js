@@ -117,7 +117,7 @@ const QuickTeaser = ({ video, audio, borderRadius }) => {
       <Audio
         src={
           audio ||
-          "https://remotion.ap-south-1.linodeobjects.com/assetsES_Love Me Back.mp3"
+          "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/ES_Love+Me+Back.mp3"
         }
         loop
       />
@@ -149,7 +149,7 @@ const QuickTeaser = ({ video, audio, borderRadius }) => {
         <Video
           src={
             video ||
-            "https://remotion.ap-south-1.linodeobjects.com/assetsfinal.mp4"
+            "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/assetsfinal.mp4"
           }
           style={{
             width: "100%",

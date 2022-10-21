@@ -50,14 +50,14 @@ export const RotateTitle = ({
           style={backgroundVideoStyle}
           src={
             backgroundVideo ||
-            "https://remotion.ap-south-1.linodeobjects.com/production ID_4779866.mp4"
+            "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/production+ID_4779866.mp4"
           }
         />
       </Loop>
       <Audio
         src={
           audio ||
-          "https://remotion.ap-south-1.linodeobjects.com/ES_Come 2gether.mp3"
+          "https://dkihjuum4jcjr.cloudfront.net/ES_ITUNES/Come%202gether/ES_Come%202gether.mp3"
         }
       />
 
@@ -85,7 +85,7 @@ export const RotateTitle = ({
               startFrom={0}
               src={
                 video ||
-                "https://remotion.ap-south-1.linodeobjects.com/Screen Recording 2022-06-27 at 6.54.27 PM.mov"
+                "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/Screen+Recording+2022-06-27+at+6.54.27+PM+(1).mov"
               }
               muted
             />
