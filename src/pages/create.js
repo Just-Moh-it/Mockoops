@@ -5,11 +5,6 @@ import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 
 const CreatePage = () => {
-  useEffect(() => {
-    toast.error(
-      "Hey, sorry for the inconvinience but Mockoops is down right now 🥲. Please check back in a few hours."
-    );
-  }, []);
 
   return (
     <>

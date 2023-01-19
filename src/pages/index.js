@@ -24,10 +24,6 @@ export default function Home() {
   const vid = useRef();
   const widgetRef = useRef();
 
-  useEffect(() => {
-    toast.error("Hey, sorry for the inconvinience but Mockoops is down right now 🥲. Please check back in a few hours.")
-  }, [])
-
   const toggleModal = () => {
     setModal({
       isOpen: true,
