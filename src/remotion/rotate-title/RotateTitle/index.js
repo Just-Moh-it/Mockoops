@@ -8,6 +8,7 @@ import {
   interpolate,
   Audio,
 } from "remotion";
+import videoUrls from "../../../utils/videoUrls";
 
 import {
   wrapperStyle,
@@ -48,10 +49,7 @@ export const RotateTitle = ({
       <Loop durationInFrames={145}>
         <Video
           style={backgroundVideoStyle}
-          src={
-            backgroundVideo ||
-            "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/production+ID_4779866.mp4"
-          }
+          src={backgroundVideo || videoUrls.PRODUCTION_ID_66}
         />
       </Loop>
       <Audio
@@ -83,10 +81,7 @@ export const RotateTitle = ({
             <Video
               style={videoScreenStyle}
               startFrom={0}
-              src={
-                video ||
-                "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/Screen+Recording+2022-06-27+at+6.54.27+PM+(1).mov"
-              }
+              src={video || videoUrls.ANGLED_SCREEN}
               muted
             />
           </div>

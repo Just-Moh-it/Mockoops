@@ -17,11 +17,16 @@ import { PlayBtn } from "icons";
 import { homepageData } from "data";
 import { useRecoilState } from "recoil";
 import { modalState } from "state/global";
+import toast from "react-hot-toast";
 
 export default function Home() {
   const [modal, setModal] = useRecoilState(modalState);
   const vid = useRef();
   const widgetRef = useRef();
+
+  useEffect(() => {
+    toast.error("Hey, sorry for the inconvinience but Mockoops is down right now 🥲. Please check back in a few hours.")
+  }, [])
 
   const toggleModal = () => {
     setModal({

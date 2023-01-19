@@ -1,3 +1,4 @@
+import videoUrls from "../../utils/videoUrls";
 import QuickTeaser from "./QuickTeaser";
 
 export const config = {
@@ -8,10 +9,8 @@ export const config = {
   fps: 30,
   template: QuickTeaser,
   defaultProps: {
-    video:
-      "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/assetsfinal.mp4",
-    audio:
-      "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/ES_Love+Me+Back.mp3",
+    video: videoUrls.ASSETS_SUNRISE,
+    audio: videoUrls.ES_LOVE,
   },
   height: 1080,
   width: 1920,
@@ -19,15 +18,13 @@ export const config = {
   inputPropsSchema: [
     {
       type: "file",
-      defaultValue:
-        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/assetsfinal.mp4",
+      defaultValue: videoUrls.ASSETS_FINAL,
       name: "Video",
       key: "video",
     },
     {
       type: "file",
-      defaultValue:
-        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/ES_Love+Me+Back.mp3",
+      defaultValue: videoUrls.ES_LOVE,
       name: "Audio",
       key: "audio",
     },

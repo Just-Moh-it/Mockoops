@@ -1,3 +1,4 @@
+import videoUrls from "../../utils/videoUrls";
 import { RotateTitle } from "./RotateTitle";
 
 export const config = {
@@ -29,8 +30,7 @@ export const config = {
     },
     {
       type: "file",
-      defaultValue:
-        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/Screen+Recording+2022-06-27+at+6.54.27+PM+(1).mov",
+      defaultValue: videoUrls.ANGLED_SCREEN,
       name: "Video",
       key: "video",
     },

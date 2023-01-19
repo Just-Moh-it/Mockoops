@@ -1,4 +1,6 @@
 import AngledPresentation from "./AngledPresentation";
+import VideoUrls from "../../utils/videoUrls";
+import videoUrls from "../../utils/videoUrls";
 
 export const config = {
   id: "angled-presentation",
@@ -8,12 +10,9 @@ export const config = {
   fps: 30,
   template: AngledPresentation,
   defaultProps: {
-    bgVideo:
-      "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/pexels-artem-podrez-7234993+(1).mp4",
-    video:
-      "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/assetsScreen+Recording+2022-06-25+at+6.31.33+PM.mov",
-    audio:
-      "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/prototypr.mp3",
+    bgVideo: VideoUrls.PEXELS_ARTEM,
+    video: VideoUrls.PROTOTYPR_RECORDING,
+    audio: VideoUrls.PROTOTYPR_AUDIO,
   },
   height: 600,
   width: 1066,
@@ -21,22 +20,19 @@ export const config = {
   inputPropsSchema: [
     {
       type: "file",
-      defaultValue:
-        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/pexels-artem-podrez-7234993+(1).mp4",
+      defaultValue: VideoUrls.PEXELS_ARTEM,
       name: "Background Video",
       key: "bgVideo",
     },
     {
       type: "file",
-      defaultValue:
-        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/assetsScreen+Recording+2022-06-25+at+6.31.33+PM.mov",
+      defaultValue: videoUrls.PROTOTYPR_RECORDING,
       name: "Video",
       key: "video",
     },
     {
       type: "file",
-      defaultValue:
-        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/prototypr.mp3",
+      defaultValue: videoUrls.PROTOTYPR_AUDIO,
       name: "Audio",
       key: "audio",
     },

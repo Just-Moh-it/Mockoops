@@ -9,6 +9,7 @@ import {
   Easing,
   Audio,
 } from "remotion";
+import videoUrls from "../../../utils/videoUrls";
 import {
   wrapperStyles,
   bgVideoStyles,
@@ -95,16 +96,13 @@ const AngledPresentation = ({ bgVideo, video, audio }) => {
         <Loop durationInFrames={300}>
           <Video
             style={{ ...bgVideoStyles }}
-            src={
-              bgVideo ||
-              "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/pexels-artem-podrez-7234993+(1).mp4"
-            }
+            src={bgVideo || videoUrls.PEXELS_ARTEM}
             muted
           />
           <Audio
             src={
               audio ||
-              "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/prototypr.mp3"
+              "https://pub-4bf634469b5c482e9546855c0abd7a17.r2.dev/prototypr.mp3"
             }
           />
         </Loop>
@@ -119,10 +117,7 @@ const AngledPresentation = ({ bgVideo, video, audio }) => {
       >
         <MenuBar />
         <Video
-          src={
-            video ||
-            "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/Screen+Recording+2022-06-27+at+6.54.27+PM+(1).mov"
-          }
+          src={video || videoUrls.ANGLED_SCREEN}
           style={{ ...deviceVideoStyles }}
           muted
         />
