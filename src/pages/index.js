@@ -17,6 +17,7 @@ import { PlayBtn } from "icons";
 import { homepageData } from "data";
 import { useRecoilState } from "recoil";
 import { modalState } from "state/global";
+import toast from "react-hot-toast";
 
 export default function Home() {
   const [modal, setModal] = useRecoilState(modalState);

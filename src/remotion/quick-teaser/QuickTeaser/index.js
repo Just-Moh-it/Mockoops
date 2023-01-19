@@ -7,6 +7,7 @@ import {
   Easing,
   Audio,
 } from "remotion";
+import videoUrls from "../../../utils/videoUrls";
 
 const QuickTeaser = ({ video, audio, borderRadius }) => {
   const frame = useCurrentFrame();
@@ -114,13 +115,7 @@ const QuickTeaser = ({ video, audio, borderRadius }) => {
     >
       {/* QuickTeaser Video */}
 
-      <Audio
-        src={
-          audio ||
-          "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/ES_Love+Me+Back.mp3"
-        }
-        loop
-      />
+      <Audio src={audio || videoUrls.ES_LOVE} loop />
 
       {/* Screen Video */}
       <AbsoluteFill
@@ -149,7 +144,7 @@ const QuickTeaser = ({ video, audio, borderRadius }) => {
         <Video
           src={
             video ||
-            "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/assetsfinal.mp4"
+            "https://pub-4bf634469b5c482e9546855c0abd7a17.r2.dev/assetsfinal.mp4"
           }
           style={{
             width: "100%",

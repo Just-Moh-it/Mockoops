@@ -3,7 +3,7 @@ const data = {
     headingItems: ["Drag.", "Edit.", "Done."],
     video: {
       preview: {
-        src: "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/Introducing%20Mockoops%20%F0%9F%93%B1%20_%20Create%20Mockups%20in%20seconds.mp4",
+        src: "https://pub-4bf634469b5c482e9546855c0abd7a17.r2.dev/Introducing%20Mockoops%20%F0%9F%93%B1%20_%20Create%20Mockups%20in%20seconds.mp4",
         alt: "Introduction Video",
       },
       content: {
@@ -67,7 +67,7 @@ const data = {
           "Add your boring screen-recordings to one of the beautiful templates and instantly make them a piece of art.",
       },
       video: {
-        src: "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/1.mp4",
+        src: "https://pub-4bf634469b5c482e9546855c0abd7a17.r2.dev/1.mp4",
         alt: "Drag-dropping into the video source",
       },
     },
@@ -79,7 +79,7 @@ const data = {
           "Beautifying a screen-recording to upload on twitter? Announcing a new app? We've got you covered",
       },
       video: {
-        src: "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/2.mp4",
+        src: "https://pub-4bf634469b5c482e9546855c0abd7a17.r2.dev/2.mp4",
         alt: "Scrolling through templates",
         loop: false,
       },
@@ -91,7 +91,7 @@ const data = {
           "Blazing fast serverless-based exports, with no watermarks. Preview in the browser and finalize anytime.",
       },
       video: {
-        src: "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/3.mp4",
+        src: "https://pub-4bf634469b5c482e9546855c0abd7a17.r2.dev/3.mp4",
         alt: "Showing the export process",
       },
     },

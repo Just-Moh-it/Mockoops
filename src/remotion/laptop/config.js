@@ -1,3 +1,4 @@
+import videoUrls from "../../utils/videoUrls";
 import Laptop from "./Laptop";
 
 export const config = {
@@ -8,12 +9,9 @@ export const config = {
   fps: 30,
   template: Laptop,
   defaultProps: {
-    bgVideo:
-      "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/production+ID_4884237.mp4",
-    video:
-      "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/scenery.mp4",
-    audio:
-      "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/assetssunset.mp3",
+    bgVideo: videoUrls.PRODUCTION_ID_37,
+    video: videoUrls.SCENERY,
+    audio: videoUrls.ASSETS_SUNRISE,
   },
   height: 800,
   width: 1516,
@@ -21,22 +19,19 @@ export const config = {
   inputPropsSchema: [
     {
       type: "file",
-      defaultValue:
-        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/production+ID_4884237.mp4",
+      defaultValue: videoUrls.PRODUCTION_ID_37,
       name: "Background Video",
       key: "bgVideo",
     },
     {
       type: "file",
-      defaultValue:
-        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/scenery.mp4",
+      defaultValue: videoUrls.SCENERY,
       name: "Video",
       key: "video",
     },
     {
       type: "file",
-      defaultValue:
-        "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/assetssunset.mp3",
+      defaultValue: videoUrls.ASSETS_SUNRISE,
       name: "Audio",
       key: "audio",
     },

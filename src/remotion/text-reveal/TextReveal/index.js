@@ -7,6 +7,7 @@ import {
   Easing,
   Audio,
 } from "remotion";
+import videoUrls from "../../../utils/videoUrls";
 // import Confetti from "remotion-confetti";
 
 const QuickTeaser = ({ video, audio, text, isConfettiEnabled = true }) => {
@@ -125,7 +126,7 @@ const QuickTeaser = ({ video, audio, text, isConfettiEnabled = true }) => {
       <Audio
         src={
           audio ||
-          "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/ES_Love+Me+Back.mp3"
+          videoUrls.ES_LOVE
         }
         loop
       />
@@ -175,7 +176,7 @@ const QuickTeaser = ({ video, audio, text, isConfettiEnabled = true }) => {
         {/* <Video
           src={
             video ||
-            "https://s3.ap-south-1.amazonaws.com/assets.mockoops.mohitya.dev/Pckd-2+-Dashboard---Anime-3.mp4"
+            "https://pub-4bf634469b5c482e9546855c0abd7a17.r2.dev/Pckd-2+-Dashboard---Anime-3.mp4"
           }
           style={{
             width: "100%",
