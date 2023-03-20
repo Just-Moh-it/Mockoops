@@ -7,7 +7,7 @@ import styles from "./index.module.scss";
 import { useTheme } from "next-themes";
 import { Shortcut } from "@shopify/react-shortcuts";
 import { useRecoilState } from "recoil";
-import { templates } from "remotion/templates";
+import { templates } from "animations/templates";
 import { secondsToTime } from "utils";
 
 // State

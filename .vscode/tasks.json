@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "update-deployments",
+      "problemMatcher": ["$tsc-watch"],
+      "label": "npm: update-deployments",
+      "detail": "npm run delete-deployments && npm run deploy",
+      "isBackground": true
+    }
+  ]
+}

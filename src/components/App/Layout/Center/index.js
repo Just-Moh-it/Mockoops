@@ -4,7 +4,7 @@ import styles from "./index.module.scss";
 import Link from "next/link";
 import { Popover } from "@headlessui/react";
 import { Player } from "@remotion/player";
-import Stars from "remotion/stars/Stars";
+import Stars from "animations/stars/Stars";
 import { useRecoilValue } from "recoil";
 import { templateState, inputPropsState } from "state/global";
 
