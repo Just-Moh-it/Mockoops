@@ -117,3 +117,6 @@ The software is published under the [`MIT` License](/LICENSE).
 ### [⏫⭐️ Scroll to the star button](#start-of-content)
 
 If you believe this project has potential, feel free to **star this repo** just like many [amazing people](https://github.com/Just-Moh-it/Mockoops/stargazers) have.
+
+> **Note**
+> The was originally a hackathon project, and at the time, I was not a very experienced programmer (which is appearant with the usage of JS over TS). Apologies if the code is a bit messy. I'll be refactoring it soon.

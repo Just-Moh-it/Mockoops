@@ -1,5 +1,5 @@
 import { atom, selector } from "recoil";
-import { templates } from "remotion/templates";
+import { templates } from "animations/templates";
 
 // Template Id
 export const templateIdState = atom({
