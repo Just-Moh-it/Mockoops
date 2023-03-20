@@ -27,7 +27,7 @@ const data = {
         name: "Mohit Yadav",
         description: "Dev",
         avatar: {
-          src: "https://pbs.twimg.com/profile_images/1525045654976077825/5379dAKX_400x400.jpg",
+          src: "/assets/images/avatars/mohit.jpeg",
           alt: "Mohit",
         },
       },
@@ -39,7 +39,7 @@ const data = {
         name: "Dhravya Shah",
         description: "Student",
         avatar: {
-          src: "https://unavatar.io/twitter/dhravyashah",
+          src: "/assets/images/avatars/dhravya.png",
           alt: "Dhravya",
         },
       },
